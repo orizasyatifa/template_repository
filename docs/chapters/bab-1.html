@@ -27,6 +27,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -80,6 +115,35 @@ ul.task-list li input[type="checkbox"] {
 <style>html{ scroll-behavior: smooth; }</style>
 <meta name="author" content="Bakti Siregar, M.Sc.">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../assets/style.css">
 </head>
@@ -163,7 +227,50 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Daftar Isi</h2>
    
   <ul>
-  <li><a href="#pendahuluan" id="toc-pendahuluan" class="nav-link active" data-scroll-target="#pendahuluan"><span class="header-section-number">1.1</span> Pendahuluan</a></li>
+  <li><a href="#populasi-simulasi" id="toc-populasi-simulasi" class="nav-link active" data-scroll-target="#populasi-simulasi"><span class="header-section-number">2</span> Populasi Simulasi</a>
+  <ul class="collapse">
+  <li><a href="#distribusi-sampling-rata-rata-sampel" id="toc-distribusi-sampling-rata-rata-sampel" class="nav-link" data-scroll-target="#distribusi-sampling-rata-rata-sampel"><span class="header-section-number">2.1</span> Distribusi Sampling Rata-rata Sampel</a>
+  <ul class="collapse">
+  <li><a href="#pengaruh-ukuran-sampel" id="toc-pengaruh-ukuran-sampel" class="nav-link" data-scroll-target="#pengaruh-ukuran-sampel"><span class="header-section-number">2.1.1</span> Pengaruh Ukuran Sampel</a></li>
+  </ul></li>
+  <li><a href="#central-limit-theorem-clt" id="toc-central-limit-theorem-clt" class="nav-link" data-scroll-target="#central-limit-theorem-clt"><span class="header-section-number">2.2</span> Central Limit Theorem (CLT)</a>
+  <ul class="collapse">
+  <li><a href="#demonstrasi-pada-tiga-bentuk-populasi" id="toc-demonstrasi-pada-tiga-bentuk-populasi" class="nav-link" data-scroll-target="#demonstrasi-pada-tiga-bentuk-populasi"><span class="header-section-number">2.2.1</span> Demonstrasi pada Tiga Bentuk Populasi</a></li>
+  <li><a href="#seberapa-besar-cukup-besar" id="toc-seberapa-besar-cukup-besar" class="nav-link" data-scroll-target="#seberapa-besar-cukup-besar"><span class="header-section-number">2.2.2</span> Seberapa Besar “Cukup Besar”?</a></li>
+  <li><a href="#menghitung-peluang-dengan-clt" id="toc-menghitung-peluang-dengan-clt" class="nav-link" data-scroll-target="#menghitung-peluang-dengan-clt"><span class="header-section-number">2.2.3</span> Menghitung Peluang dengan CLT</a></li>
+  </ul></li>
+  <li><a href="#distribusi-sampling-proporsi-sampel" id="toc-distribusi-sampling-proporsi-sampel" class="nav-link" data-scroll-target="#distribusi-sampling-proporsi-sampel"><span class="header-section-number">2.3</span> Distribusi Sampling Proporsi Sampel</a></li>
+  <li><a href="#standard-error" id="toc-standard-error" class="nav-link" data-scroll-target="#standard-error"><span class="header-section-number">2.4</span> Standard Error</a>
+  <ul class="collapse">
+  <li><a href="#standard-error-vs-simpangan-baku" id="toc-standard-error-vs-simpangan-baku" class="nav-link" data-scroll-target="#standard-error-vs-simpangan-baku"><span class="header-section-number">2.4.1</span> Standard Error vs Simpangan Baku</a></li>
+  <li><a href="#hukum-akar-kuadrat" id="toc-hukum-akar-kuadrat" class="nav-link" data-scroll-target="#hukum-akar-kuadrat"><span class="header-section-number">2.4.2</span> Hukum Akar Kuadrat</a></li>
+  </ul></li>
+  <li><a href="#estimasi" id="toc-estimasi" class="nav-link" data-scroll-target="#estimasi"><span class="header-section-number">2.5</span> Estimasi</a>
+  <ul class="collapse">
+  <li><a href="#point-estimate" id="toc-point-estimate" class="nav-link" data-scroll-target="#point-estimate"><span class="header-section-number">2.5.1</span> Point Estimate</a></li>
+  <li><a href="#confidence-interval-selang-kepercayaan" id="toc-confidence-interval-selang-kepercayaan" class="nav-link" data-scroll-target="#confidence-interval-selang-kepercayaan"><span class="header-section-number">2.5.2</span> Confidence Interval (Selang Kepercayaan)</a></li>
+  <li><a href="#menafsirkan-selang-kepercayaan-dengan-benar" id="toc-menafsirkan-selang-kepercayaan-dengan-benar" class="nav-link" data-scroll-target="#menafsirkan-selang-kepercayaan-dengan-benar"><span class="header-section-number">2.5.3</span> Menafsirkan Selang Kepercayaan dengan Benar</a></li>
+  <li><a href="#faktor-yang-memengaruhi-lebar-selang" id="toc-faktor-yang-memengaruhi-lebar-selang" class="nav-link" data-scroll-target="#faktor-yang-memengaruhi-lebar-selang"><span class="header-section-number">2.5.4</span> Faktor yang Memengaruhi Lebar Selang</a></li>
+  </ul></li>
+  <li><a href="#menentukan-ukuran-sampel" id="toc-menentukan-ukuran-sampel" class="nav-link" data-scroll-target="#menentukan-ukuran-sampel"><span class="header-section-number">2.6</span> Menentukan Ukuran Sampel</a></li>
+  <li><a href="#studi-kasus-komprehensif-survei-adopsi-qris-umkm" id="toc-studi-kasus-komprehensif-survei-adopsi-qris-umkm" class="nav-link" data-scroll-target="#studi-kasus-komprehensif-survei-adopsi-qris-umkm"><span class="header-section-number">2.7</span> Studi Kasus Komprehensif: Survei Adopsi QRIS UMKM</a>
+  <ul class="collapse">
+  <li><a href="#langkah-1-estimasi-proporsi" id="toc-langkah-1-estimasi-proporsi" class="nav-link" data-scroll-target="#langkah-1-estimasi-proporsi"><span class="header-section-number">2.7.1</span> Langkah 1: Estimasi Proporsi</a></li>
+  <li><a href="#langkah-2-estimasi-rata-rata-nilai-transaksi" id="toc-langkah-2-estimasi-rata-rata-nilai-transaksi" class="nav-link" data-scroll-target="#langkah-2-estimasi-rata-rata-nilai-transaksi"><span class="header-section-number">2.7.2</span> Langkah 2: Estimasi Rata-rata Nilai Transaksi</a></li>
+  <li><a href="#langkah-3-apakah-clt-dapat-diandalkan-di-sini" id="toc-langkah-3-apakah-clt-dapat-diandalkan-di-sini" class="nav-link" data-scroll-target="#langkah-3-apakah-clt-dapat-diandalkan-di-sini"><span class="header-section-number">2.7.3</span> Langkah 3: Apakah CLT Dapat Diandalkan di Sini?</a></li>
+  <li><a href="#langkah-4-merencanakan-survei-lanjutan" id="toc-langkah-4-merencanakan-survei-lanjutan" class="nav-link" data-scroll-target="#langkah-4-merencanakan-survei-lanjutan"><span class="header-section-number">2.7.4</span> Langkah 4: Merencanakan Survei Lanjutan</a></li>
+  <li><a href="#pertanyaan-diskusi-dan-jawaban" id="toc-pertanyaan-diskusi-dan-jawaban" class="nav-link" data-scroll-target="#pertanyaan-diskusi-dan-jawaban"><span class="header-section-number">2.7.5</span> Pertanyaan Diskusi dan Jawaban</a></li>
+  </ul></li>
+  <li><a href="#latihan-mandiri" id="toc-latihan-mandiri" class="nav-link" data-scroll-target="#latihan-mandiri"><span class="header-section-number">2.8</span> Latihan Mandiri</a>
+  <ul class="collapse">
+  <li><a href="#latihan-utama-berat-kemasan-kopi-bubuk" id="toc-latihan-utama-berat-kemasan-kopi-bubuk" class="nav-link" data-scroll-target="#latihan-utama-berat-kemasan-kopi-bubuk"><span class="header-section-number">2.8.1</span> Latihan Utama: Berat Kemasan Kopi Bubuk</a></li>
+  <li><a href="#latihan-tambahan-self-check" id="toc-latihan-tambahan-self-check" class="nav-link" data-scroll-target="#latihan-tambahan-self-check"><span class="header-section-number">2.8.2</span> Latihan Tambahan (Self-Check)</a></li>
+  </ul></li>
+  <li><a href="#cheat-sheet-fungsi-r-yang-digunakan" id="toc-cheat-sheet-fungsi-r-yang-digunakan" class="nav-link" data-scroll-target="#cheat-sheet-fungsi-r-yang-digunakan"><span class="header-section-number">2.9</span> Cheat Sheet: Fungsi R yang Digunakan</a></li>
+  <li><a href="#glosarium-istilah" id="toc-glosarium-istilah" class="nav-link" data-scroll-target="#glosarium-istilah"><span class="header-section-number">2.10</span> Glosarium Istilah</a></li>
+  <li><a href="#rangkuman-dan-kesimpulan" id="toc-rangkuman-dan-kesimpulan" class="nav-link" data-scroll-target="#rangkuman-dan-kesimpulan"><span class="header-section-number">2.11</span> Rangkuman dan Kesimpulan</a></li>
+  <li><a href="#referensi-pendukung" id="toc-referensi-pendukung" class="nav-link" data-scroll-target="#referensi-pendukung"><span class="header-section-number">2.12</span> Referensi Pendukung</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pakardata1/ebook-template-quarto.git/edit/main/chapters/bab-1.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/pakardata1/ebook-template-quarto.git/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan isu</a></li></ul></div></nav>
     </div>
@@ -189,10 +296,1268 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="pendahuluan" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="pendahuluan"><span class="header-section-number">1.1</span> Pendahuluan</h2>
+<section id="populasi-simulasi" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Populasi Simulasi</h1>
+<p>Kita memakai populasi 20.000 mahasiswa dengan variabel waktu layar harian (jam) yang menjulur kanan – bentuk yang sengaja dipilih jauh dari lonceng.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">909</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">20000</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>populasi <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rgamma</span>(N, <span class="at">shape =</span> <span class="dv">2</span>, <span class="at">rate =</span> <span class="fl">0.4</span>), <span class="dv">2</span>) <span class="co"># jam per hari</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(populasi)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((populasi <span class="sc">-</span> mu)<span class="sc">^</span><span class="dv">2</span>)) <span class="co"># SD populasi (pembagi N)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">N =</span> N, <span class="at">mu =</span> <span class="fu">round</span>(mu, <span class="dv">3</span>), <span class="at">sigma =</span> <span class="fu">round</span>(sigma, <span class="dv">3</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        N        mu     sigma 
+20000.000     5.010     3.551 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>satu_sampel <span class="ot">&lt;-</span> <span class="fu">sample</span>(populasi, <span class="dv">40</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>banyak_rata <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">mean</span>(<span class="fu">sample</span>(populasi, <span class="dv">40</span>)))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(populasi, <span class="at">breaks =</span> <span class="dv">40</span>, <span class="at">col =</span> <span class="st">"#9ecae1"</span>, <span class="at">border =</span> <span class="st">"white"</span>, <span class="at">main =</span> <span class="st">"Populasi (N</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">↪ = 20.000)"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">xlab =</span> <span class="st">"Jam per hari"</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(satu_sampel, <span class="at">breaks =</span> <span class="dv">12</span>, <span class="at">col =</span> <span class="st">"#fdae6b"</span>, <span class="at">border =</span> <span class="st">"white"</span>, <span class="at">main =</span> <span class="st">"Satu</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">↪ sampel (n = 40)"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">xlab =</span> <span class="st">"Jam per hari"</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(banyak_rata, <span class="at">breaks =</span> <span class="dv">40</span>, <span class="at">col =</span> <span class="st">"#a1d99b"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="st">"Sampling distribution x-bar"</span>, <span class="at">xlab =</span> <span class="st">"Rata-rata sampel (n = 40)"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="bab-1_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Populasi dan satu sampel sama-sama menjulur kanan, tetapi distribusi rata-rata sampel jauh lebih sempit dan hampir berbentuk lonceng. Inilah inti pertemuan ini.</p>
+<section id="distribusi-sampling-rata-rata-sampel" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="distribusi-sampling-rata-rata-sampel"><span class="header-section-number">2.1</span> Distribusi Sampling Rata-rata Sampel</h2>
+<p>Untuk sampel acak berukuran n dari populasi dengan mean μ dan simpangan baku σ:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 35%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sifat</th>
+<th style="text-align: left;">Rumus</th>
+<th style="text-align: left;">Arti</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean</td>
+<td style="text-align: left;"><span class="math inline">\(\mu_{\bar{x}} = \mu\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\bar{x}\)</span> adalah penaksir tak bias: rata-ratanya tepat di parameter</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Standard error</td>
+<td style="text-align: left;"><span class="math inline">\(\sigma_{\bar{x}} = \dfrac{\sigma}{\sqrt{n}}\)</span></td>
+<td style="text-align: left;">Sebaran <span class="math inline">\(\bar{x}\)</span> mengecil seiring bertambahnya <span class="math inline">\(n\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bentuk sebaran</td>
+<td style="text-align: left;">Normal jika populasi normal; mendekati normal untuk <span class="math inline">\(n\)</span> cukup besar (CLT)</td>
+<td style="text-align: left;">Memungkinkan perhitungan peluang</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">data.frame</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">Besaran =</span> <span class="fu">c</span>(<span class="st">"Mean distribusi sampling"</span>, <span class="st">"SD distribusi sampling (SE)"</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">Teori =</span> <span class="fu">round</span>(<span class="fu">c</span>(mu, sigma <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">40</span>)), <span class="dv">4</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">Simulasi_10000_sampel =</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fu">mean</span>(banyak_rata), <span class="fu">sd</span>(banyak_rata)), <span class="dv">4</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>), <span class="at">caption =</span> <span class="st">"Teori vs simulasi untuk n = 40"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Teori vs simulasi untuk n = 40</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Besaran</th>
+<th style="text-align: right;">Teori</th>
+<th style="text-align: right;">Simulasi_10000_sampel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean distribusi sampling</td>
+<td style="text-align: right;">5.0097</td>
+<td style="text-align: right;">5.0024</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SD distribusi sampling (SE)</td>
+<td style="text-align: right;">0.5615</td>
+<td style="text-align: right;">0.5556</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Besaran</th>
+<th style="text-align: right;">Teori</th>
+<th style="text-align: right;">Simulasi (10.000 sampel)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean distribusi sampling</td>
+<td style="text-align: right;">5.0097</td>
+<td style="text-align: right;">5.0024</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SD distribusi sampling (SE)</td>
+<td style="text-align: right;">0.5615</td>
+<td style="text-align: right;">0.5556</td>
+</tr>
+</tbody>
+</table>
+<p>Hasil simulasi hampir persis sama dengan teori.</p>
+<p>Koreksi populasi terhingga. Rumus σ/√n mengasumsikan populasi sangat besar dibanding sampel. Jika sampel mencapai lebih dari sekitar 5% populasi (tanpa pengem- balian), SE dikalikan faktor √N−nN−1 . Pada contoh ini n/N = 0,2%, sehingga koreksi dapat diabaikan.</p>
+<section id="pengaruh-ukuran-sampel" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="pengaruh-ukuran-sampel"><span class="header-section-number">2.1.1</span> Pengaruh Ukuran Sampel</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n_list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">80</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (nn <span class="cf">in</span> n_list) {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>rata <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">sample</span>(populasi, nn)))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(rata, <span class="at">breaks =</span> <span class="dv">40</span>, <span class="at">col =</span> <span class="st">"#a1d99b"</span>, <span class="at">border =</span> <span class="st">"white"</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="at">freq =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="fu">paste0</span>(<span class="st">"n = "</span>, nn, <span class="st">" (SE = "</span>, <span class="fu">round</span>(sigma <span class="sc">/</span> <span class="fu">sqrt</span>(nn), <span class="dv">2</span>), <span class="st">")"</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">xlab =</span> <span class="st">"Rata-rata sampel"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, mu, sigma <span class="sc">/</span> <span class="fu">sqrt</span>(nn)), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mu, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="bab-1_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Kurva merah adalah distribusi normal dengan mean μ dan SD σ/√n.&nbsp;Semakin besar n: (1) distribusi semakin sempit, dan (2) bentuknya semakin mendekati normal meskipun populasinya enjulur kanan.</p>
+</section>
+</section>
+<section id="central-limit-theorem-clt" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="central-limit-theorem-clt"><span class="header-section-number">2.2</span> Central Limit Theorem (CLT)</h2>
+<p>Central Limit Theorem. Jika sampel acak berukuran n diambil dari populasi sem- barang bentuk dengan mean μ dan simpangan baku σ (terhingga), maka untuk n</p>
+<p>yang cukup besar, distribusi sampling ̄x mendekati normal:</p>
+<p>̄x ≈ N(μ, σ √ n )</p>
+<p>CLT adalah alasan mengapa distribusi normal muncul di mana-mana dalam statistika inferensial bukan karena data selalu normal, tetapi karena rata-rata dari data cenderung normal.</p>
+<section id="demonstrasi-pada-tiga-bentuk-populasi" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="demonstrasi-pada-tiga-bentuk-populasi"><span class="header-section-number">2.2.1</span> Demonstrasi pada Tiga Bentuk Populasi</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pop_bentuk <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">"Seragam"</span> <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">20000</span>, <span class="dv">0</span>, <span class="dv">10</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">"Menjulur kanan"</span> <span class="ot">=</span> <span class="fu">rexp</span>(<span class="dv">20000</span>, <span class="at">rate =</span> <span class="fl">0.5</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">"Bimodal"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="dv">2</span>, <span class="fl">0.8</span>), <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="dv">8</span>, <span class="fl">0.8</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>ukuran <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">30</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">3</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="fl">2.5</span>, <span class="dv">1</span>))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (nama <span class="cf">in</span> <span class="fu">names</span>(pop_bentuk)) {</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pop_bentuk[[nama]], <span class="at">breaks =</span> <span class="dv">40</span>, <span class="at">col =</span> <span class="st">"#9ecae1"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Populasi:"</span>, nama), <span class="at">xlab =</span> <span class="st">""</span>, <span class="at">ylab =</span> <span class="st">""</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (nn <span class="cf">in</span> ukuran) {</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (nama <span class="cf">in</span> <span class="fu">names</span>(pop_bentuk)) {</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>rata <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">3000</span>, <span class="fu">mean</span>(<span class="fu">sample</span>(pop_bentuk[[nama]], nn)))</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(rata, <span class="at">breaks =</span> <span class="dv">35</span>, <span class="at">col =</span> <span class="st">"#a1d99b"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="fu">paste0</span>(nama, <span class="st">", n = "</span>, nn), <span class="at">xlab =</span> <span class="st">""</span>, <span class="at">ylab =</span> <span class="st">""</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="bab-1_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Baris pertama adalah populasi; baris berikutnya adalah distribusi sampling ̄x untuk n = 2, 5, dan 30. Populasi seragam sudah tampak lonceng pada n = 5; populasi bimodal masih bergelombang pada n = 2 tetapi lonceng pada n = 30; populasi menjulur kanan membutuhkan n terbesar untuk menghilangkan kemencengannya.</p>
+</section>
+<section id="seberapa-besar-cukup-besar" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="seberapa-besar-cukup-besar"><span class="header-section-number">2.2.2</span> Seberapa Besar “Cukup Besar”?</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Bentuk populasi</th>
+<th style="text-align: left;">Ukuran sampel yang biasanya cukup</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Berapa pun (distribusi <span class="math inline">\(\bar{x}\)</span> tepat normal)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Simetris, tidak normal</td>
+<td style="text-align: left;">Sekitar 10–15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Menceng sedang</td>
+<td style="text-align: left;">Sekitar 30 (aturan praktis yang populer)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sangat menceng atau banyak outlier</td>
+<td style="text-align: left;">Bisa jauh lebih dari 30</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>skew <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { d <span class="ot">&lt;-</span> x <span class="sc">-</span> <span class="fu">mean</span>(x); <span class="fu">mean</span>(d<span class="sc">^</span><span class="dv">3</span>) <span class="sc">/</span> <span class="fu">mean</span>(d<span class="sc">^</span><span class="dv">2</span>)<span class="sc">^</span><span class="fl">1.5</span> }</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">n =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">100</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="at">Kemencengan_xbar =</span> <span class="fu">sapply</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">100</span>), <span class="cf">function</span>(nn)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">skew</span>(<span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">sample</span>(populasi, nn)))), <span class="dv">3</span>)))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    n Kemencengan_xbar
+1   2            1.007
+2   5            0.581
+3  10            0.470
+4  30            0.220
+5 100            0.170</code></pre>
+</div>
+</div>
+<p>Kemencengan distribusi ̄x menyusut kira-kira sebanding dengan 1/√n.</p>
+</section>
+<section id="menghitung-peluang-dengan-clt" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="menghitung-peluang-dengan-clt"><span class="header-section-number">2.2.3</span> Menghitung Peluang dengan CLT</h3>
+<p>Contoh: Jika diambil sampel acak 40 mahasiswa, berapa peluang rata-rata waktu layarnya melebihi 5,5 jam?</p>
+<p>z = ̄x − μ σ/√ n P( ̄x &gt; 5,5) = P (Z &gt; z)</p>
+<p>Kemencengan distribusi ̄x menyusut kira-kira sebanding dengan 1/√ n.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>se40 <span class="ot">&lt;-</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">40</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>z_55 <span class="ot">&lt;-</span> (<span class="fl">5.5</span> <span class="sc">-</span> mu) <span class="sc">/</span> se40</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">SE =</span> <span class="fu">round</span>(se40, <span class="dv">4</span>), <span class="at">z =</span> <span class="fu">round</span>(z_55, <span class="dv">3</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="at">Peluang_CLT =</span> <span class="fu">round</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(z_55), <span class="dv">4</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="at">Peluang_simulasi =</span> <span class="fu">round</span>(<span class="fu">mean</span>(banyak_rata <span class="sc">&gt;</span> <span class="fl">5.5</span>), <span class="dv">4</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              SE                z      Peluang_CLT Peluang_simulasi 
+          0.5615           0.8730           0.1913           0.1803 </code></pre>
+</div>
+</div>
+<p>Perbandingan: peluang seorang mahasiswa (bukan rata-rata 40 orang) memiliki waktu layar di atas 5,5 jam jauh lebih besar:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(populasi <span class="sc">&gt;</span> <span class="fl">5.5</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.35175</code></pre>
+</div>
+</div>
+<p>Individu sangat bervariasi, tetapi rata-rata dari banyak individu jauh lebih stabil.</p>
+</section>
+</section>
+<section id="distribusi-sampling-proporsi-sampel" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="distribusi-sampling-proporsi-sampel"><span class="header-section-number">2.3</span> Distribusi Sampling Proporsi Sampel</h2>
+<p>Untuk variabel kategorik biner (Ya/Tidak), statistik yang dipakai adalah proporsi sampel ̂p = x/n.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sifat</th>
+<th style="text-align: left;">Rumus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean</td>
+<td style="text-align: left;"><span class="math inline">\(\mu_{\hat{p}} = p\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Standard error</td>
+<td style="text-align: left;"><span class="math inline">\(\sigma_{\hat{p}} = \sqrt{\dfrac{p(1-p)}{n}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bentuk sebaran</td>
+<td style="text-align: left;">Mendekati normal jika <span class="math inline">\(np \geq 10\)</span> dan <span class="math inline">\(n(1-p) \geq 10\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>p_benar <span class="ot">&lt;-</span> <span class="fl">0.08</span> <span class="co"># misalnya 8% mahasiswa pernah terlambat membayar UKT</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (nn <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">60</span>, <span class="dv">300</span>)) {</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">5000</span>, <span class="at">size =</span> nn, <span class="at">prob =</span> p_benar) <span class="sc">/</span> nn</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(p_hat, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.005</span>, <span class="fl">0.4</span>, <span class="at">by =</span> <span class="fl">0.01</span>), <span class="at">col =</span> <span class="st">"#fdae6b"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.3</span>),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="fu">paste0</span>(<span class="st">"n = "</span>, nn, <span class="st">": np = "</span>, nn <span class="sc">*</span> p_benar), <span class="at">xlab =</span> <span class="st">"Proporsi</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="st">↪ sampel"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, p_benar, <span class="fu">sqrt</span>(p_benar <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_benar) <span class="sc">/</span> nn)), <span class="at">add =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="bab-1_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Dengan n = 20 (np = 1,6), distribusi ̂p sangat menceng dan “berbatang” – pendekatan normal buruk. Dengan n = 300 (np = 24), pendekatan normal sangat baik.</p>
+</section>
+<section id="standard-error" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="standard-error"><span class="header-section-number">2.4</span> Standard Error</h2>
+<section id="standard-error-vs-simpangan-baku" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="standard-error-vs-simpangan-baku"><span class="header-section-number">2.4.1</span> Standard Error vs Simpangan Baku</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Simpangan baku (<span class="math inline">\(s\)</span> atau <span class="math inline">\(\sigma\)</span>)</th>
+<th style="text-align: left;">Standard error (SE)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mengukur sebaran</td>
+<td style="text-align: left;">Data individu</td>
+<td style="text-align: left;">Statistik (misalnya <span class="math inline">\(\bar{x}\)</span>) dari sampel ke sampel</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Menjawab</td>
+<td style="text-align: left;">“Seberapa beragam individu?”</td>
+<td style="text-align: left;">“Seberapa tepat taksiran kita?”</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Jika <span class="math inline">\(n\)</span> bertambah</td>
+<td style="text-align: left;">Tetap (mendekati <span class="math inline">\(\sigma\)</span>)</td>
+<td style="text-align: left;">Mengecil</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rumus (mean)</td>
+<td style="text-align: left;"><span class="math inline">\(s = \sqrt{\dfrac{\sum (x_i - \bar{x})^2}{n-1}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(SE = \dfrac{s}{\sqrt{n}}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Karena σ biasanya tidak diketahui, SE ditaksir dengan s/√n (untuk mean) atau √ ̂p(1 − ̂p)/n(untuk proporsi).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">6</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>n_besar <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">40</span>, <span class="dv">160</span>, <span class="dv">640</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">t</span>(<span class="fu">sapply</span>(n_besar, <span class="cf">function</span>(nn) {</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>hasil <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">2000</span>, { s <span class="ot">&lt;-</span> <span class="fu">sample</span>(populasi, nn); <span class="fu">c</span>(<span class="fu">sd</span>(s), <span class="fu">sd</span>(s) <span class="sc">/</span> <span class="fu">sqrt</span>(nn))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">n =</span> nn, <span class="at">Rata_SD_sampel =</span> <span class="fu">round</span>(<span class="fu">mean</span>(hasil[<span class="dv">1</span>, ]), <span class="dv">3</span>),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="at">Rata_SE_taksiran =</span> <span class="fu">round</span>(<span class="fu">mean</span>(hasil[<span class="dv">2</span>, ]), <span class="dv">3</span>))</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>})), <span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">"Rata-rata dari 2.000 sampel per n: SD stabil di sekitar</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="st">↪ sigma = "</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(sigma, <span class="dv">2</span>), <span class="st">", SE mengecil"</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Rata-rata dari 2.000 sampel per n: SD stabil di sekitar ↪ sigma = 3.55, SE mengecil</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Rata_SD_sampel</th>
+<th style="text-align: right;">Rata_SE_taksiran</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">3.348</td>
+<td style="text-align: right;">1.059</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">3.493</td>
+<td style="text-align: right;">0.552</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">3.537</td>
+<td style="text-align: right;">0.280</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">640</td>
+<td style="text-align: right;">3.551</td>
+<td style="text-align: right;">0.140</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Table 8: Rata-rata dari 2.000 sampel per n: SD stabil di sekitar sigma = 3.55, SE mengecil</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span class="math inline">\(n\)</span></th>
+<th style="text-align: right;">Rata-rata SD sampel</th>
+<th style="text-align: right;">Rata-rata SE taksiran</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">3.348</td>
+<td style="text-align: right;">1.059</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">3.493</td>
+<td style="text-align: right;">0.552</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">3.537</td>
+<td style="text-align: right;">0.280</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">640</td>
+<td style="text-align: right;">3.551</td>
+<td style="text-align: right;">0.140</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="hukum-akar-kuadrat" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="hukum-akar-kuadrat"><span class="header-section-number">2.4.2</span> Hukum Akar Kuadrat</h3>
+<p>Karena SE ∝ 1/√n, untuk membagi dua SE dibutuhkan sampel empat kali lipat. Presisi semakin mahal: menambah n dari 100 ke 400 memberi keuntungan yang sama dengan dari 400 ke 1.600.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>n_seq <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1000</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(n_seq, sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n_seq), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"#4C72B0"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="at">xlab =</span> <span class="st">"Ukuran sampel (n)"</span>, <span class="at">ylab =</span> <span class="st">"Standard error"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="st">"SE Menurun Cepat di Awal, Lalu Melandai"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">400</span>), sigma <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">400</span>)), <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">cex =</span><span class="fl">1.3</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">400</span>), sigma <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">400</span>)), <span class="at">pos =</span> <span class="dv">3</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="at">labels =</span> <span class="fu">paste0</span>(<span class="st">"n = "</span>, <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">400</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">SE = "</span>, <span class="fu">round</span>(sigma <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">400</span>)), <span class="dv">2</span>)))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="bab-1_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="estimasi" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="estimasi"><span class="header-section-number">2.5</span> Estimasi</h2>
+<section id="point-estimate" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="point-estimate"><span class="header-section-number">2.5.1</span> Point Estimate</h3>
+<p>Point estimate adalah satu angka yang menaksir parameter.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">Point estimate</th>
+<th style="text-align: left;">Penaksir tak bias?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\bar{x}\)</span></td>
+<td style="text-align: left;">Ya</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(p\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\hat{p}\)</span></td>
+<td style="text-align: left;">Ya</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\sigma^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(s^2\)</span> (pembagi <span class="math inline">\(n-1\)</span>)</td>
+<td style="text-align: left;">Ya</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\sigma\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(s\)</span></td>
+<td style="text-align: left;">Sedikit bias (diabaikan dalam praktik)</td>
+</tr>
+</tbody>
+</table>
+<p>Kelemahan point estimate: hampir pasti tidak tepat sama dengan parameter, dan tidak memberitahu seberapa jauh melesetnya.</p>
+</section>
+<section id="confidence-interval-selang-kepercayaan" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="confidence-interval-selang-kepercayaan"><span class="header-section-number">2.5.2</span> Confidence Interval (Selang Kepercayaan)</h3>
+<p>Selang kepercayaan memberikan rentang nilai yang masuk akal bagi parameter:</p>
+<p>Point estimate ± nilai kritis ⏟⏟⏟⏟⏟⏟⏟ × SE margin of error</p>
+<section id="ci-untuk-mean-σ-diketahui-z" class="level4">
+<h4 class="anchored" data-anchor-id="ci-untuk-mean-σ-diketahui-z">CI untuk Mean, σ Diketahui (z)</h4>
+<p>̄x ± zα/2 σ √ n</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tingkat kepercayaan</th>
+<th style="text-align: right;"><span class="math inline">\(\alpha\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(z_{\alpha/2}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">90%</td>
+<td style="text-align: right;">0,10</td>
+<td style="text-align: right;">1,645</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">95%</td>
+<td style="text-align: right;">0,05</td>
+<td style="text-align: right;">1,960</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">99%</td>
+<td style="text-align: right;">0,01</td>
+<td style="text-align: right;">2,576</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">qnorm</span>(<span class="fu">c</span>(<span class="fl">0.95</span>, <span class="fl">0.975</span>, <span class="fl">0.995</span>)), <span class="dv">3</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.645 1.960 2.576</code></pre>
+</div>
+</div>
+</section>
+<section id="ci-untuk-mean-σ-tidak-diketahui-t" class="level4">
+<h4 class="anchored" data-anchor-id="ci-untuk-mean-σ-tidak-diketahui-t">CI untuk Mean, σ Tidak Diketahui (t)</h4>
+<p>Dalam praktik σ hampir tidak pernah diketahui dan diganti s. Penggantian ini menambah ketidakpastian, sehingga nilai kritis diambil dari distribusi t dengan derajat bebas df = n − 1:</p>
+<p>̄x ± tα/2, n−1 s √ n</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x), <span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylab =</span> <span class="st">"Kepadatan"</span>, <span class="at">xlab =</span> <span class="st">"Nilai"</span>,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="st">"Distribusi t Berekor Lebih Tebal dari Normal"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df =</span> <span class="dv">3</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"firebrick"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df =</span> <span class="dv">10</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"darkorange"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"firebrick"</span>, <span class="st">"darkorange"</span>),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Normal baku (z)"</span>, <span class="st">"t, df = 3"</span>, <span class="st">"t, df = 10"</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="bab-1_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">df =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">29</span>, <span class="dv">99</span>, <span class="cn">Inf</span>),</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="at">t_kritis_95 =</span> <span class="fu">round</span>(<span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">29</span>, <span class="dv">99</span>, <span class="cn">Inf</span>)), <span class="dv">3</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   df t_kritis_95
+1   4       2.776
+2   9       2.262
+3  29       2.045
+4  99       1.984
+5 Inf       1.960</code></pre>
+</div>
+</div>
+<p>Untuk sampel kecil, nilai kritis t lebih besar daripada 1,96 (selang lebih lebar, “hukuman” karena menaksir σ). Saat n membesar, distribusi t mendekati normal. Distribusi t dibahas lebih dalam pada Pertemuan 11.</p>
+</section>
+<section id="contoh-perhitungan" class="level4">
+<h4 class="anchored" data-anchor-id="contoh-perhitungan">Contoh Perhitungan</h4>
+<p>Satu sampel 40 mahasiswa (satu_sampel) dipakai untuk menaksir rata-rata waktu layar seluruh mahasiswa.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">length</span>(satu_sampel); xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(satu_sampel); s <span class="ot">&lt;-</span> <span class="fu">sd</span>(satu_sampel)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>t_krit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> n1 <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>se_hat <span class="ot">&lt;-</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n1)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>moe <span class="ot">&lt;-</span> t_krit <span class="sc">*</span> se_hat</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">n =</span> n1, <span class="at">x_bar =</span> <span class="fu">round</span>(xbar, <span class="dv">3</span>), <span class="at">s =</span> <span class="fu">round</span>(s, <span class="dv">3</span>), <span class="at">SE =</span> <span class="fu">round</span>(se_hat, <span class="dv">3</span>),</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="at">t_kritis =</span> <span class="fu">round</span>(t_krit, <span class="dv">3</span>), <span class="at">MoE =</span> <span class="fu">round</span>(moe, <span class="dv">3</span>),</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="at">Bawah =</span> <span class="fu">round</span>(xbar <span class="sc">-</span> moe, <span class="dv">3</span>), <span class="at">Atas =</span> <span class="fu">round</span>(xbar <span class="sc">+</span> moe, <span class="dv">3</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       n    x_bar        s       SE t_kritis      MoE    Bawah     Atas 
+  40.000    4.915    3.019    0.477    2.023    0.966    3.950    5.881 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(satu_sampel, <span class="at">conf.level =</span> <span class="fl">0.95</span>)<span class="sc">$</span>conf.int <span class="co"># fungsi bawaan R, hasil sama</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.949947 5.881053
+attr(,"conf.level")
+[1] 0.95</code></pre>
+</div>
+</div>
+<p>Laporan: “Rata-rata waktu layar mahasiswa diperkirakan 4.92 jam per hari, dengan selang kepercayaan 95% antara 3.95 dan 5.88 jam (n = 40).”</p>
+</section>
+<section id="ci-untuk-proporsi" class="level4">
+<h4 class="anchored" data-anchor-id="ci-untuk-proporsi">CI untuk Proporsi</h4>
+<p>̂p ± zα/2√ ̂p(1 − ̂p) n syarat: n ̂p ≥ 10 dan n(1 − ̂p) ≥ 10</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x_ya <span class="ot">&lt;-</span> <span class="dv">138</span>; n_resp <span class="ot">&lt;-</span> <span class="dv">400</span> <span class="co"># 138 dari 400 responden memakai QRIS setiap hari</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> x_ya <span class="sc">/</span> n_resp</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>se_p <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_hat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat) <span class="sc">/</span> n_resp)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>moe_p <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> se_p</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">p_hat =</span> p_hat, <span class="at">SE =</span> <span class="fu">round</span>(se_p, <span class="dv">4</span>), <span class="at">MoE =</span> <span class="fu">round</span>(moe_p, <span class="dv">4</span>),</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="at">Bawah =</span> <span class="fu">round</span>(p_hat <span class="sc">-</span> moe_p, <span class="dv">4</span>), <span class="at">Atas =</span> <span class="fu">round</span>(p_hat <span class="sc">+</span> moe_p, <span class="dv">4</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> p_hat     SE    MoE  Bawah   Atas 
+0.3450 0.0238 0.0466 0.2984 0.3916 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="do">## p_hat SE MoE Bawah Atas</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.3450 0.0238 0.0466 0.2984 0.3916</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">n_p =</span> n_resp <span class="sc">*</span> p_hat, <span class="at">n_1_min_p =</span> n_resp <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat)) <span class="co"># syarat terpenuhi</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      n_p n_1_min_p 
+      138       262 </code></pre>
+</div>
+</div>
+<p>“Sekitar 34,5% responden memakai QRIS setiap hari, margin of error ± 4.7 poin persentase (kepercayaan 95%)” – format inilah yang sering dikutip media dari hasil survei.</p>
+</section>
+</section>
+<section id="menafsirkan-selang-kepercayaan-dengan-benar" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="menafsirkan-selang-kepercayaan-dengan-benar"><span class="header-section-number">2.5.3</span> Menafsirkan Selang Kepercayaan dengan Benar</h3>
+<p>Kepercayaan 95% adalah sifat prosedurnya, bukan satu selang tertentu: jika pengambilan sampel dan perhitungan selang diulang berkali-kali, sekitar 95% selang yang dihasilkan akan memuat μ.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>selang <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">replicate</span>(B, {</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>s_i <span class="ot">&lt;-</span> <span class="fu">sample</span>(populasi, <span class="dv">40</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(s_i); e <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">39</span>) <span class="sc">*</span> <span class="fu">sd</span>(s_i) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">40</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">bawah =</span> m <span class="sc">-</span> e, <span class="at">atas =</span> m <span class="sc">+</span> e)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>}))</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>memuat <span class="ot">&lt;-</span> selang[, <span class="st">"bawah"</span>] <span class="sc">&lt;=</span> mu <span class="sc">&amp;</span> selang[, <span class="st">"atas"</span>] <span class="sc">&gt;=</span> mu</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NULL</span>, <span class="at">xlim =</span> <span class="fu">range</span>(selang), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">1</span>, B), <span class="at">xlab =</span> <span class="st">"Waktu layar (jam)"</span>, <span class="at">ylab=</span> <span class="st">"Sampel ke-"</span>,</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="fu">paste0</span>(<span class="st">"100 Selang Kepercayaan 95%: "</span>, <span class="fu">sum</span>(memuat), <span class="st">" memuat mu"</span>))</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(selang[, <span class="st">"bawah"</span>], <span class="dv">1</span><span class="sc">:</span>B, selang[, <span class="st">"atas"</span>], <span class="dv">1</span><span class="sc">:</span>B,</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="at">col =</span> <span class="fu">ifelse</span>(memuat, <span class="st">"grey50"</span>, <span class="st">"firebrick"</span>), <span class="at">lwd =</span> <span class="fu">ifelse</span>(memuat, <span class="dv">1</span>,<span class="fl">2.5</span>))</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mu, <span class="at">col =</span> <span class="st">"#4C72B0"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="bab-1_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Garis merah adalah selang yang gagal memuat μ. Kita tidak pernah tahu apakah selang kita termasuk yang merah tetapi kita tahu prosedurnya berhasil sekitar 95% dari waktu.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tafsiran</th>
+<th style="text-align: left;">Benar/Salah</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">“Kami 95% yakin bahwa selang 4,2–5,7 jam memuat rata-rata populasi.”</td>
+<td style="text-align: left;">Benar (bahasa sehari-hari yang diterima)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">“95% selang yang dibuat dengan prosedur ini akan memuat <span class="math inline">\(\mu\)</span>.”</td>
+<td style="text-align: left;">Benar (tafsiran paling tepat)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">“Ada peluang 95% bahwa <span class="math inline">\(\mu\)</span> berada di antara 4,2 dan 5,7.”</td>
+<td style="text-align: left;">Salah. <span class="math inline">\(\mu\)</span> bukan variabel acak; ia di dalam atau di luar selang</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">“95% mahasiswa memiliki waktu layar antara 4,2 dan 5,7 jam.”</td>
+<td style="text-align: left;">Salah. CI adalah tentang rata-rata, bukan individu</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">“95% rata-rata sampel lain akan jatuh di selang ini.”</td>
+<td style="text-align: left;">Salah</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="faktor-yang-memengaruhi-lebar-selang" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="faktor-yang-memengaruhi-lebar-selang"><span class="header-section-number">2.5.4</span> Faktor yang Memengaruhi Lebar Selang</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Faktor</th>
+<th style="text-align: left;">Jika dinaikkan</th>
+<th style="text-align: left;">Lebar selang</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Tingkat kepercayaan (90% → 99%)</td>
+<td style="text-align: left;">Nilai kritis naik</td>
+<td style="text-align: left;">Melebar</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ukuran sampel <span class="math inline">\(n\)</span></td>
+<td style="text-align: left;">SE turun</td>
+<td style="text-align: left;">Menyempit</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Variabilitas data (<span class="math inline">\(s\)</span>)</td>
+<td style="text-align: left;">SE naik</td>
+<td style="text-align: left;">Melebar</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>lebar <span class="ot">&lt;-</span> <span class="cf">function</span>(n, s, conf) <span class="dv">2</span> <span class="sc">*</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> (<span class="dv">1</span> <span class="sc">-</span> conf) <span class="sc">/</span> <span class="dv">2</span>, n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>tabel_lebar <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">outer</span>(<span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">80</span>, <span class="dv">320</span>), <span class="fu">c</span>(<span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>),</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">Vectorize</span>(<span class="cf">function</span>(n, cf) <span class="fu">lebar</span>(n, <span class="at">s =</span> <span class="dv">3</span>, <span class="at">conf =</span> cf))),<span class="dv">3</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(tabel_lebar) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"n = 20"</span>, <span class="st">"n = 80"</span>, <span class="st">"n = 320"</span>), <span class="fu">c</span>(<span class="st">"90%"</span>, <span class="st">"95%"</span>,<span class="st">"99%"</span>))</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tabel_lebar, <span class="at">caption =</span> <span class="st">"Lebar CI (s = 3) menurut ukuran sampel dan tingkat kepercayaan"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Lebar CI (s = 3) menurut ukuran sampel dan tingkat kepercayaan</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">90%</th>
+<th style="text-align: right;">95%</th>
+<th style="text-align: right;">99%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">n = 20</td>
+<td style="text-align: right;">2.320</td>
+<td style="text-align: right;">2.808</td>
+<td style="text-align: right;">3.838</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">n = 80</td>
+<td style="text-align: right;">1.116</td>
+<td style="text-align: right;">1.335</td>
+<td style="text-align: right;">1.771</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">n = 320</td>
+<td style="text-align: right;">0.553</td>
+<td style="text-align: right;">0.660</td>
+<td style="text-align: right;">0.869</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="menentukan-ukuran-sampel" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="menentukan-ukuran-sampel"><span class="header-section-number">2.6</span> Menentukan Ukuran Sampel</h2>
+<p>Sebelum survei, peneliti biasanya menetapkan margin of error (E) yang diinginkan lalu menghitung n minimum (selalu dibulatkan ke atas).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 47%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">Rumus ukuran sampel</th>
+<th style="text-align: left;">Keterangan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean</td>
+<td style="text-align: left;"><span class="math inline">\(n = \left(\dfrac{z_{\alpha/2}\,\sigma}{E}\right)^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\sigma\)</span> ditaksir dari studi sebelumnya atau survei percontohan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Proporsi</td>
+<td style="text-align: left;"><span class="math inline">\(n = \dfrac{z_{\alpha/2}^2\,p(1-p)}{E^2}\)</span></td>
+<td style="text-align: left;">Jika <span class="math inline">\(p\)</span> tidak diketahui, pakai <span class="math inline">\(p = 0{,}5\)</span> (paling konservatif)</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>n_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(sigma, E, <span class="at">conf =</span> <span class="fl">0.95</span>) <span class="fu">ceiling</span>((<span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> (<span class="dv">1</span> <span class="sc">-</span> conf) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span>sigma <span class="sc">/</span> E)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>n_prop <span class="ot">&lt;-</span> <span class="cf">function</span>(E, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">conf =</span> <span class="fl">0.95</span>) <span class="fu">ceiling</span>(<span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> (<span class="dv">1</span> <span class="sc">-</span> conf) <span class="sc">/</span> <span class="dv">2</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span>p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p) <span class="sc">/</span> E<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">n_mean</span>(<span class="at">sigma =</span> <span class="fl">3.5</span>, <span class="at">E =</span> <span class="fl">0.5</span>) <span class="co"># menaksir rata-rata waktu layar +- 0,5 jam</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 189</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">data.frame</span>(<span class="at">MoE =</span> <span class="fu">c</span>(<span class="st">"5%"</span>, <span class="st">"3%"</span>, <span class="st">"2%"</span>, <span class="st">"1%"</span>),</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="at">n_minimum =</span> <span class="fu">sapply</span>(<span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.03</span>, <span class="fl">0.02</span>, <span class="fl">0.01</span>), n_prop)),</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="at">caption =</span> <span class="st">"Ukuran sampel survei proporsi (p = 0,5; kepercayaan 95%)"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Ukuran sampel survei proporsi (p = 0,5; kepercayaan 95%)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">MoE</th>
+<th style="text-align: right;">n_minimum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">5%</td>
+<td style="text-align: right;">385</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3%</td>
+<td style="text-align: right;">1068</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2%</td>
+<td style="text-align: right;">2401</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1%</td>
+<td style="text-align: right;">9604</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Survei nasional dengan margin of error sekitar ± 3% memerlukan sekitar 1.000–1.100 responden,berapa pun ukuran populasinya (asalkan populasi jauh lebih besar dari sampel). Memperkecil margin of error dari 2% ke 1% memerlukan sampel empat kali lipat.</p>
+<pre><code>Ukuran sampel tidak menyembuhkan bias. Rumus di atas       hanya mengendalikan galat acak. Jika metode sampling       bias (Pertemuan 3), sampel sebesar apa pun tetap           menghasilkan selang yang presisi di tempat yang salah.</code></pre>
+</section>
+<section id="studi-kasus-komprehensif-survei-adopsi-qris-umkm" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="studi-kasus-komprehensif-survei-adopsi-qris-umkm"><span class="header-section-number">2.7</span> Studi Kasus Komprehensif: Survei Adopsi QRIS UMKM</h2>
+<p>Konteks: Dinas Koperasi ingin menaksir (1) proporsi UMKM kuliner yang menerima QRIS dan (2) rata-rata nilai transaksi QRIS harian per UMKM pengguna. Survei acak sederhana terhadap 250 UMKM dari daftar resmi menghasilkan data berikut.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>n_umkm <span class="ot">&lt;-</span> <span class="dv">250</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>terima_qris <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n_umkm, <span class="dv">1</span>, <span class="fl">0.62</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>nilai_trx <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rlnorm</span>(<span class="fu">sum</span>(terima_qris), <span class="at">meanlog =</span> <span class="fu">log</span>(<span class="dv">450000</span>), <span class="at">sdlog =</span> <span class="fl">0.6</span>),<span class="sc">-</span><span class="dv">3</span>) <span class="co"># Rp/hari</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">Jumlah_pengguna =</span> <span class="fu">sum</span>(terima_qris))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Jumlah_pengguna 
+            165 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nilai_trx)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  98000  334000  472000  553685  653000 2192000 </code></pre>
+</div>
+</div>
+<section id="langkah-1-estimasi-proporsi" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="langkah-1-estimasi-proporsi"><span class="header-section-number">2.7.1</span> Langkah 1: Estimasi Proporsi</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>p_hat_u <span class="ot">&lt;-</span> <span class="fu">mean</span>(terima_qris)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>se_u <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_hat_u <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat_u) <span class="sc">/</span> n_umkm)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>ci_u <span class="ot">&lt;-</span> p_hat_u <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> se_u</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">n_p =</span> n_umkm <span class="sc">*</span> p_hat_u, <span class="at">n_1mp =</span> n_umkm <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat_u)) <span class="co"># cek syarat</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  n_p n_1mp 
+  165    85 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">c</span>(<span class="at">p_hat =</span> p_hat_u, <span class="at">SE =</span> se_u, <span class="at">Bawah =</span> ci_u[<span class="dv">1</span>], <span class="at">Atas =</span> ci_u[<span class="dv">2</span>]), <span class="dv">4</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> p_hat     SE  Bawah   Atas 
+0.6600 0.0300 0.6013 0.7187 </code></pre>
+</div>
+</div>
+</section>
+<section id="langkah-2-estimasi-rata-rata-nilai-transaksi" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="langkah-2-estimasi-rata-rata-nilai-transaksi"><span class="header-section-number">2.7.2</span> Langkah 2: Estimasi Rata-rata Nilai Transaksi</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(nilai_trx <span class="sc">/</span> <span class="dv">1000</span>, <span class="at">breaks =</span> <span class="dv">25</span>, <span class="at">col =</span> <span class="st">"#4C72B0"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="st">"Nilai Transaksi QRIS Harian (UMKM pengguna)"</span>, <span class="at">xlab =</span> <span class="st">"Ribu Rp per hari"</span>,</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="at">ylab =</span> <span class="st">"Jumlah UMKM"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="bab-1_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>ci_trx <span class="ot">&lt;-</span> <span class="fu">t.test</span>(nilai_trx)<span class="sc">$</span>conf.int</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">c</span>(<span class="at">n =</span> <span class="fu">length</span>(nilai_trx), <span class="at">Mean =</span> <span class="fu">mean</span>(nilai_trx), <span class="at">Median =</span> <span class="fu">median</span>(nilai_trx),</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="at">SE =</span> <span class="fu">sd</span>(nilai_trx) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(nilai_trx)), <span class="at">Bawah =</span> ci_trx[<span class="dv">1</span>], <span class="at">Atas =</span>ci_trx[<span class="dv">2</span>]))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     n   Mean Median     SE  Bawah   Atas 
+   165 553685 472000  24623 505065 602304 </code></pre>
+</div>
+</div>
+</section>
+<section id="langkah-3-apakah-clt-dapat-diandalkan-di-sini" class="level3" data-number="2.7.3">
+<h3 data-number="2.7.3" class="anchored" data-anchor-id="langkah-3-apakah-clt-dapat-diandalkan-di-sini"><span class="header-section-number">2.7.3</span> Langkah 3: Apakah CLT Dapat Diandalkan di Sini?</h3>
+<p>Datanya menjulur kanan. Kita periksa dengan bootstrap: mengambil ulang sampel (dengan pengembalian) dari data kita sendiri untuk meniru distribusi sampling .̄x</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>boot_mean <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">sample</span>(nilai_trx, <span class="at">replace =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(boot_mean <span class="sc">/</span> <span class="dv">1000</span>, <span class="at">breaks =</span> <span class="dv">40</span>, <span class="at">col =</span> <span class="st">"#a1d99b"</span>, <span class="at">border =</span> <span class="st">"white"</span>, <span class="at">freq =</span><span class="cn">FALSE</span>,</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="st">"Distribusi Bootstrap Rata-rata Nilai Transaksi"</span>, <span class="at">xlab =</span> <span class="st">"Ribu Rp per</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="st">↪ hari"</span>)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="fu">mean</span>(nilai_trx) <span class="sc">/</span> <span class="dv">1000</span>, <span class="fu">sd</span>(nilai_trx) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(nilai_trx)) <span class="sc">/</span><span class="dv">1000</span>),</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="bab-1_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">quantile</span>(boot_mean, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))) <span class="co"># selang bootstrap persentil 95%</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  2.5%  97.5% 
+506082 605874 </code></pre>
+</div>
+</div>
+<p>Distribusi bootstrap ̄x hampir berbentuk lonceng dan selang bootstrap hampir sama dengan selang t. Dengan n = 165 pengguna, CLT bekerja baik meskipun data individunya menceng.</p>
+</section>
+<section id="langkah-4-merencanakan-survei-lanjutan" class="level3" data-number="2.7.4">
+<h3 data-number="2.7.4" class="anchored" data-anchor-id="langkah-4-merencanakan-survei-lanjutan"><span class="header-section-number">2.7.4</span> Langkah 4: Merencanakan Survei Lanjutan</h3>
+<p>Dinas ingin survei tahun depan menghasilkan margin of error proporsi ± 3% dan rata-rata transaksi ± Rp 30.000 (kepercayaan 95%).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">n_untuk_proporsi =</span> <span class="fu">n_prop</span>(<span class="at">E =</span> <span class="fl">0.03</span>, <span class="at">p =</span> p_hat_u),</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="at">n_pengguna_untuk_mean =</span> <span class="fu">n_mean</span>(<span class="at">sigma =</span> <span class="fu">sd</span>(nilai_trx), <span class="at">E =</span> <span class="dv">30000</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     n_untuk_proporsi n_pengguna_untuk_mean 
+                  958                   427 </code></pre>
+</div>
+</div>
+</section>
+<section id="pertanyaan-diskusi-dan-jawaban" class="level3" data-number="2.7.5">
+<h3 data-number="2.7.5" class="anchored" data-anchor-id="pertanyaan-diskusi-dan-jawaban"><span class="header-section-number">2.7.5</span> Pertanyaan Diskusi dan Jawaban</h3>
+<ol type="1">
+<li><p>Bagaimana melaporkan hasil proporsi? “Diperkirakan 66% UMKM kuliner telah menerima QRIS (CI 95%: 60.1%–71.9%; n = 250).” Kali- mat ini memuat point estimate, selang, tingkat kepercayaan, dan ukuran sampel.</p></li>
+<li><p>Mengapa median transaksi jauh di bawah mean, dan mana yang dilaporkan? Distribusinya menjulur kanan (segelintir UMKM besar). Untuk menggambarkan UMKM tipikal,median lebih tepat. Namun jika dinas ingin menaksir total nilai transaksi (mean × jumlah UMKM pengguna), yang dibutuhkan justru mean beserta selangnya.</p></li>
+<li><p>Apakah selang 95% berarti 95% UMKM bertransaksi di rentang tersebut? Tidak. Selang itu menaksir rata-rata populasi. Rentang nilai transaksi individu jauh lebih lebar lihat histogram.</p></li>
+<li><p>Mengapa ukuran sampel untuk proporsi tidak dihitung dengan p = 0,5? Kita sudah memiliki taksiran ̂p ≈ 0.66 dari survei ini. Memakai p = 0,5 lebih aman (menghasilkan n terbesar), tetapi dengan informasi sebelumnya kita dapat menghemat biaya. Perbedaannya kecil karena p(1 − p) hampir datar di sekitar 0,5.</p></li>
+</ol>
+</section>
+</section>
+<section id="latihan-mandiri" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="latihan-mandiri"><span class="header-section-number">2.8</span> Latihan Mandiri</h2>
+<section id="latihan-utama-berat-kemasan-kopi-bubuk" class="level3" data-number="2.8.1">
+<h3 data-number="2.8.1" class="anchored" data-anchor-id="latihan-utama-berat-kemasan-kopi-bubuk"><span class="header-section-number">2.8.1</span> Latihan Utama: Berat Kemasan Kopi Bubuk</h3>
+<p>Konteks: Mesin pengisi kopi bubuk dirancang mengisi kemasan dengan rata-rata 250 gram. Dari data historis, simpangan baku pengisian σ = 6 gram. Petugas QC mengambil sampel acak 36 kemasan.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">99</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>berat <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">36</span>, <span class="at">mean =</span> <span class="fl">248.5</span>, <span class="at">sd =</span> <span class="dv">6</span>), <span class="dv">1</span>)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(berat)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  230.3   244.9   249.1   247.4   251.4   256.9 </code></pre>
+</div>
+</div>
+<section id="tugas-1-hitung-se-dan-jelaskan-maknanya" class="level4">
+<h4 class="anchored" data-anchor-id="tugas-1-hitung-se-dan-jelaskan-maknanya">Tugas 1: Hitung SE dan jelaskan maknanya</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>sigma_k <span class="ot">&lt;-</span> <span class="dv">6</span>; n_k <span class="ot">&lt;-</span> <span class="fu">length</span>(berat)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>sigma_k <span class="sc">/</span> <span class="fu">sqrt</span>(n_k)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>Jawaban: SE = 6/6 = 1 gram. Rata-rata dari 36 kemasan biasanya meleset sekitar 1 gram dari rata-rata sebenarnya – jauh lebih kecil daripada variasi berat antarkemasan (6 gram).</p>
+</section>
+<section id="tugas-2" class="level4">
+<h4 class="anchored" data-anchor-id="tugas-2">Tugas 2:</h4>
+<p>Jika mesin bekerja benar (μ = 250), berapa peluang rata-rata 36 kemasan kurang dari 248 gram?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">248</span>, <span class="at">mean =</span> <span class="dv">250</span>, <span class="at">sd =</span> sigma_k <span class="sc">/</span> <span class="fu">sqrt</span>(n_k))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02275013</code></pre>
+</div>
+</div>
+<p>Jawaban: z = (248 − 250)/1 = −2, sehingga peluangnya sekitar 0.0228. Kejadian ini jarang jika mesin bekerja benar – gagasan yang menjadi dasar uji hipotesis di Pertemuan 10.</p>
+</section>
+<section id="tugas-3" class="level4">
+<h4 class="anchored" data-anchor-id="tugas-3">Tugas 3:</h4>
+<p>Hitung CI 95% untuk rata-rata berat (σ diketahui)</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>ci_z <span class="ot">&lt;-</span> <span class="fu">mean</span>(berat) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> sigma_k <span class="sc">/</span> <span class="fu">sqrt</span>(n_k)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">c</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(berat), <span class="at">Bawah =</span> ci_z[<span class="dv">1</span>], <span class="at">Atas =</span> ci_z[<span class="dv">2</span>]), <span class="dv">2</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> x_bar  Bawah   Atas 
+247.40 245.44 249.36 </code></pre>
+</div>
+</div>
+</section>
+<section id="tugas-4-hitung-ci-95-jika-σ-dianggap-tidak-diketahui-t" class="level4">
+<h4 class="anchored" data-anchor-id="tugas-4-hitung-ci-95-jika-σ-dianggap-tidak-diketahui-t">Tugas 4: Hitung CI 95% jika σ dianggap tidak diketahui (t)</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">t.test</span>(berat)<span class="sc">$</span>conf.int, <span class="dv">2</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 245.25 249.56
+attr(,"conf.level")
+[1] 0.95</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">c</span>(<span class="at">s =</span> <span class="fu">sd</span>(berat), <span class="at">t_kritis =</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">35</span>), <span class="at">z_kritis =</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)), <span class="dv">3</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       s t_kritis z_kritis 
+   6.366    2.030    1.960 </code></pre>
+</div>
+</div>
+</section>
+<section id="tugas-5-tafsirkan-hasilnya" class="level4">
+<h4 class="anchored" data-anchor-id="tugas-5-tafsirkan-hasilnya">Tugas 5: Tafsirkan hasilnya</h4>
+<p>Jawaban: Selang z dan selang t sangat mirip karena n = 36 cukup besar (t kritis hanya sedikit di atas 1,96) dan s dekat dengan σ. Jika nilai 250 tidak berada di dalam selang, data memberi indikasi bahwa rata-rata pengisian mesin berbeda dari target – yang dapat dikonfirmasi dengan uji hipotesis. Hasil sampel ini: 250 berada di luar selang z.</p>
+</section>
+<section id="tugas-6-tantangan-ukuran-sampel" class="level4">
+<h4 class="anchored" data-anchor-id="tugas-6-tantangan-ukuran-sampel">Tugas 6 (Tantangan): Ukuran sampel</h4>
+<p>Berapa kemasan yang harus diambil agar margin of error CI 95% hanya ± 1 gram? Dan ± 0,5 gram?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">MoE_1 =</span> <span class="fu">n_mean</span>(<span class="at">sigma =</span> <span class="dv">6</span>, <span class="at">E =</span> <span class="dv">1</span>), <span class="at">MoE_0.5 =</span> <span class="fu">n_mean</span>(<span class="at">sigma =</span> <span class="dv">6</span>, <span class="at">E =</span> <span class="fl">0.5</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  MoE_1 MoE_0.5 
+    139     554 </code></pre>
+</div>
+</div>
+<p>Jawaban: 139 kemasan untuk ± 1 gram dan 554 kemasan untuk ± 0,5 gram – membagi dua margin of error membutuhkan sampel empat kali lipat.</p>
+</section>
+</section>
+<section id="latihan-tambahan-self-check" class="level3" data-number="2.8.2">
+<h3 data-number="2.8.2" class="anchored" data-anchor-id="latihan-tambahan-self-check"><span class="header-section-number">2.8.2</span> Latihan Tambahan (Self-Check)</h3>
+<p>Kerjakan soal-soal berikut secara mandiri sebelum melihat kunci jawaban pada komentar kode.Soal A. Waktu tunggu layanan pelanggan berdistribusi menjulur kanan dengan μ = 8 menit dan σ = 6 menit. Untuk sampel acak 64 panggilan, tentukan mean, SE, dan bentuk distribusi sampling,lalu hitung ̄x P( ̄x &gt; 9).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kunci jawaban:</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean = 8; SE = 6 / sqrt(64) = 0.75; bentuk mendekati normal (CLT, n = 64)</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">9</span>, <span class="at">mean =</span> <span class="dv">8</span>, <span class="at">sd =</span> <span class="fl">0.75</span>) <span class="co"># z = 1.33 -&gt; sekitar 0.0912</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.09121122</code></pre>
+</div>
+</div>
+<p>Soal B. Survei 1.200 pemilih menunjukkan 54% mendukung sebuah kebijakan. Hitung CI 95% dan margin of error-nya.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kunci jawaban:</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.54</span>; n <span class="ot">&lt;-</span> <span class="dv">1200</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>moe <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> <span class="fu">sqrt</span>(p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p) <span class="sc">/</span> n) <span class="co"># 0.0282 -&gt; +- 2.8 poin persentase</span></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> moe <span class="co"># 0.512 sampai 0.568</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.511801 0.568199</code></pre>
+</div>
+</div>
+<p>Soal C. Sepuluh pengukuran pH air limbah: 6,8; 7,1; 6,9; 7,4; 7,0; 6,7; 7,2; 7,3; 6,9; 7,1. Hitung CI 95% untuk rata-rata pH secara manual dengan distribusi t lalu periksa dengan t.test().</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>ph <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">6.8</span>, <span class="fl">7.1</span>, <span class="fl">6.9</span>, <span class="fl">7.4</span>, <span class="fl">7.0</span>, <span class="fl">6.7</span>, <span class="fl">7.2</span>, <span class="fl">7.3</span>, <span class="fl">6.9</span>, <span class="fl">7.1</span>)</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Kunci jawaban:</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="co"># x-bar = 7.04; s = 0.2171; SE = 0.0687; t(0.975, 9) = 2.262; MoE = 0.155</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ph) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">9</span>) <span class="sc">*</span> <span class="fu">sd</span>(ph) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">10</span>) <span class="co"># 6.885 sampai 7.195</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.881111 7.198889</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(ph)<span class="sc">$</span>conf.int</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.881111 7.198889
+attr(,"conf.level")
+[1] 0.95</code></pre>
+</div>
+</div>
+<p>Soal D. Sebuah media menulis: “Dengan CI 95% [62%, 68%], berarti 95% warga memiliki tingkat kepuasan antara 62% dan 68%.” Perbaiki tafsiran ini.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kunci jawaban:</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tafsiran keliru. Yang benar: "Kami 95% yakin bahwa proporsi warga yang puas di seluruh</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="co"># populasi berada antara 62% dan 68%." CI menaksir PARAMETER populasi (proporsiyang puas),</span></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="co"># bukan rentang nilai individu.</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Kesalahan Umum dalam Sampling Distribution dan Estimasi 1. Menyamakan distribusi sampel dengan distribusi sampling - yang pertama berisi data individu, yang kedua berisi statistik dari banyak sampel.</p>
+<ol start="2" type="1">
+<li><p>Mengira CLT membuat data menjadi normal – CLT berbicara tentang distribusi rata-rata, bukan data individu.</p></li>
+<li><p>Menganggap n ≥ 30 selalu cukup – data yang sangat menceng atau beroutlier bisa membutuhkan lebih.</p></li>
+<li><p>Menyamakan SD dan SE – SD mengukur keragaman individu; SE mengukur ketepatan taksiran.</p></li>
+<li><p>Memakai z padahal σ tidak diketahui dan n kecil – gunakan distribusi t.</p></li>
+<li><p>Menafsirkan CI sebagai peluang parameter berada di dalam selang tertentu, atau sebagai rentang nilai individu.</p></li>
+<li><p>Membulatkan ukuran sampel ke bawah – selalu bulatkan ke atas.</p></li>
+<li><p>Mengira ukuran populasi menentukan ukuran sampel – untuk populasi besar, yang menentukan adalah margin of error, tingkat kepercayaan, dan variabilitas.</p></li>
+<li><p>Mengira sampel besar menghilangkan bias – ukuran sampel hanya mengecilkan galat acak.</p></li>
+<li><p>Memakai pendekatan normal untuk proporsi saat n ̂p atau n(1 − ̂p) kurang dari 10.</p></li>
+<li><p>Melaporkan point estimate tanpa selang atau n – pembaca tidak dapat menilai ketepatannya.</p></li>
+</ol>
+</section>
+</section>
+<section id="cheat-sheet-fungsi-r-yang-digunakan" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="cheat-sheet-fungsi-r-yang-digunakan"><span class="header-section-number">2.9</span> Cheat Sheet: Fungsi R yang Digunakan</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 44%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Fungsi</th>
+<th style="text-align: left;">Kegunaan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>sample(x, n)</code> / <code>sample(x, replace = TRUE)</code></td>
+<td style="text-align: left;">Sampel acak / sampel bootstrap</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>replicate(B, ekspresi)</code></td>
+<td style="text-align: left;">Simulasi distribusi sampling</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>rgamma()</code>, <code>rexp()</code>, <code>runif()</code>, <code>rnorm()</code>, <code>rbinom()</code>, <code>rlnorm()</code></td>
+<td style="text-align: left;">Membangkitkan populasi/data simulasi</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>pnorm(q, mean, sd)</code></td>
+<td style="text-align: left;">Peluang kumulatif normal <span class="math inline">\(P(X \leq q)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>qnorm(p)</code></td>
+<td style="text-align: left;">Nilai kritis <span class="math inline">\(z\)</span> (misalnya <code>qnorm(0.975)</code> = 1,96)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>dnorm(x, mean, sd)</code></td>
+<td style="text-align: left;">Kepadatan normal (untuk menggambar kurva)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>qt(p, df)</code>, <code>pt(q, df)</code>, <code>dt(x, df)</code></td>
+<td style="text-align: left;">Nilai kritis, peluang, dan kepadatan distribusi <span class="math inline">\(t\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>t.test(x, conf.level = 0.95)$conf.int</code></td>
+<td style="text-align: left;">Selang kepercayaan <span class="math inline">\(t\)</span> untuk mean</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>curve(f(x), add = TRUE)</code></td>
+<td style="text-align: left;">Menambahkan kurva teoretis pada histogram</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>segments(x0, y0, x1, y1)</code></td>
+<td style="text-align: left;">Menggambar selang kepercayaan sebagai garis</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>ceiling(x)</code></td>
+<td style="text-align: left;">Membulatkan ke atas (ukuran sampel)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>outer(a, b, f)</code></td>
+<td style="text-align: left;">Tabel nilai untuk kombinasi dua parameter</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>quantile(boot, c(0.025, 0.975))</code></td>
+<td style="text-align: left;">Selang bootstrap persentil</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="glosarium-istilah" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="glosarium-istilah"><span class="header-section-number">2.10</span> Glosarium Istilah</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Istilah</th>
+<th style="text-align: left;">Definisi Singkat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Statistika Inferensial</td>
+<td style="text-align: left;">Menarik kesimpulan tentang populasi dari sampel</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Distribusi Sampling</td>
+<td style="text-align: left;">Distribusi sebuah statistik dari semua kemungkinan sampel berukuran <span class="math inline">\(n\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Penaksir Tak Bias</td>
+<td style="text-align: left;">Statistik yang rata-rata distribusi samplingnya sama dengan parameter</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Central Limit Theorem</td>
+<td style="text-align: left;">Distribusi <span class="math inline">\(\bar{x}\)</span> mendekati normal untuk <span class="math inline">\(n\)</span> besar, apa pun bentuk populasinya</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Standard Error (SE)</td>
+<td style="text-align: left;">Simpangan baku distribusi sampling sebuah statistik</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Koreksi Populasi Terhingga</td>
+<td style="text-align: left;">Faktor <span class="math inline">\(\sqrt{\dfrac{N-n}{N-1}}\)</span> bila sampel lebih dari sekitar 5% populasi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Point Estimate</td>
+<td style="text-align: left;">Satu nilai yang menaksir parameter</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Confidence Interval</td>
+<td style="text-align: left;">Rentang nilai yang masuk akal bagi parameter dengan tingkat kepercayaan tertentu</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tingkat Kepercayaan</td>
+<td style="text-align: left;">Persentase selang (dari pengulangan prosedur) yang memuat parameter</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Margin of Error</td>
+<td style="text-align: left;">Nilai kritis <span class="math inline">\(\times\)</span> SE; setengah lebar selang</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nilai Kritis</td>
+<td style="text-align: left;">Nilai dari distribusi <span class="math inline">\(z\)</span> atau <span class="math inline">\(t\)</span> yang menentukan lebar selang</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Distribusi <span class="math inline">\(t\)</span></td>
+<td style="text-align: left;">Distribusi berekor tebal yang dipakai bila <span class="math inline">\(\sigma\)</span> ditaksir dengan <span class="math inline">\(s\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Derajat Bebas (df)</td>
+<td style="text-align: left;">Parameter distribusi <span class="math inline">\(t\)</span>; <span class="math inline">\(n-1\)</span> untuk satu mean</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bootstrap</td>
+<td style="text-align: left;">Pengambilan sampel ulang dengan pengembalian dari data untuk meniru distribusi sampling</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="rangkuman-dan-kesimpulan" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="rangkuman-dan-kesimpulan"><span class="header-section-number">2.11</span> Rangkuman dan Kesimpulan</h2>
+<ol type="1">
+<li><p>Distribusi sampling menggambarkan bagaimana sebuah statistik bervariasi dari sampel ke sampel; ia adalah fondasi seluruh statistika inferensial.</p></li>
+<li><p>̄x dan ̂p adalah penaksir tak bias dengan SE masing-masing σ/√n dan √p(1 − p)/n.</p></li>
+<li><p>CLT menjamin distribusi ̄x mendekati normal untuk n cukup besar, apa pun bentuk populasinya; makin menceng populasi, makin besar n yang dibutuhkan.</p></li>
+<li><p>SE bukan SD: SE mengecil sebanding 1/√n – presisi dua kali lipat membutuhkan sampel empat kali lipat.</p></li>
+<li><p>Selang kepercayaan = point estimate ± nilai kritis × SE. Gunakan z bila σ diketahui, t bila σ ditaksir. Kepercayaan 95% adalah sifat prosedur, bukan peluang untuk satu selang.</p></li>
+<li><p>Ukuran sampel dapat direncanakan dari margin of error yang diinginkan – tetapi tidak dapat menyembuhkan bias sampling.</p></li>
+</ol>
+<p>Jembatan ke sesi berikutnya: Tugas 2 latihan tadi bertanya, “jika mesin bekerja benar, seberapa jarang hasil seperti ini?” Pertanyaan itulah inti uji hipotesis di Pertemuan 10: H0, H1, tingkatsignifikansi, p-value, dan kesalahan Tipe I dan II.</p>
+</section>
+<section id="referensi-pendukung" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="referensi-pendukung"><span class="header-section-number">2.12</span> Referensi Pendukung</h2>
+<p>Materi ini merangkum topik distribusi sampling dan estimasi (sampling distributions and confidenceintervals) yang umum dibahas pada buku teks pengantar statistika bisnis/data science. Mahasiswa disarankan melengkapi pemahaman dengan merujuk pada:</p>
+<p>• Modul/slide perkuliahan “Introduction to Statistics (SDT-1102)” – Pertemuan 9: SamplingDistribution dan Estimasi.</p>
+<p>• Buku teks pengantar statistika pada bab Sampling Distributions dan Confidence IntervalEstimation.</p>
+<p>• Efron, B., &amp; Tibshirani, R. J. (1993). An Introduction to the Bootstrap. Chapman &amp; Hall.</p>
+<p>• Dokumentasi resmi R: ?pnorm, ?qnorm, ?qt, ?t.test, ?replicate (dapat diakses langsung di R/RStudio).</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
