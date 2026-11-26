@@ -406,7 +406,7 @@ Dengan sampel sangat besar, selisih yang sangat kecil pun menjadi "signifikan se
 
 ```{r}
 #| tbl-cap: "Selisih 0,2 gram: tidak signifikan vs sangat signifikan"
-kable(rbind(
+knitr::kable(rbind(
   "n = 36"      = uji_z(xbar = 249.8, mu0 = 250, sigma = 6, n = 36),
   "n = 100.000" = uji_z(xbar = 249.8, mu0 = 250, sigma = 6, n = 100000)
 ))
@@ -479,7 +479,7 @@ hasil_tss <- rbind(
   "A: H1 mu > 50 (melanggar)" = uji_z(mean(tss), 50, sigma = 12, n = 30, arah = "kanan"),
   "B: H1 mu < 50 (patuh)"     = uji_z(mean(tss), 50, sigma = 12, n = 30, arah = "kiri")
 )
-kable(hasil_tss)
+knitr::kable(hasil_tss)
 ```
 
 ## Langkah 5: Konsekuensi Kesalahan

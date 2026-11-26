@@ -3,22 +3,22 @@ project:
   output-dir: docs
   resources:
     - .nojekyll
-    - images/author/Bakti.png
+    - images/author/Oriza Syatifa.jpeg
     - epub-reader.html
     - assets/epub-reader.js
 
 book:
-  title: "Quarto Template"
-  author: "Bakti Siregar, M.Sc."
+  title: "Tugas Statistika"
+  author: "Oriza Syatifa"
   date: today
   description: "Deskripsi singkat tentang buku"
-  cover-image: images/Cover.png
+  cover-image: images/Cover.jpeg
   repo-url: https://github.com/pakardata1/ebook-template-quarto.git
   repo-actions: [edit, issue]
   sidebar:
     tools:
       - icon: file-pdf
-        href: Quarto-Template.pdf
+        href: Tugas-Statistika.pdf
         text: Pratinjau PDF
         aria-label: Pratinjau PDF
       - icon: journal
@@ -52,7 +52,7 @@ format:
     include-after-body: assets/hover-preview.html
     include-in-header:
       text: |
-        <meta name="author" content="Bakti Siregar, M.Sc.">
+        <meta name="author" content="Oriza Syatifa">
   pdf:
     documentclass: book
     pdf-engine: xelatex
@@ -61,7 +61,7 @@ format:
     number-sections: true
     toc: true
   epub:
-    cover-image: images/Cover.png
+    cover-image: images/Cover.jpeg
 
 execute:
   freeze: auto
