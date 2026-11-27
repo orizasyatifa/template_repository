@@ -1,5 +1,3 @@
-# Distribusi Sampling
-
 # Populasi Simulasi
 
 Kita memakai populasi 20.000 mahasiswa dengan variabel waktu layar harian (jam) yang menjulur kanan – bentuk yang sengaja dipilih jauh dari lonceng.
@@ -685,4 +683,20 @@ Materi ini merangkum topik distribusi sampling dan estimasi (sampling distributi
 
 • Dokumentasi resmi R: ?pnorm, ?qnorm, ?qt, ?t.test, ?replicate (dapat diakses langsung di R/RStudio).
 
+## Interpretasi 
 
+Interpretasi
+
+1. Tiga histogram. Data populasi dan satu sampel bentuknya sama-sama miring ke kanan. Tapi kalau kita ambil sampel berulang kali lalu hitung rata-ratanya, hasilnya jadi sempit dan hampir simetris seperti lonceng. Inilah yang disebut CLT.
+
+2. Teori dan simulasi. Hasil hitungan rumus dan hasil simulasi nyaris sama (mean 5,0097 vs 5,0024; SE 0,5615 vs 0,5556). Jadi rata-rata sampel memang menaksir rata-rata populasi dengan tepat, dan rumus SE-nya terbukti benar.
+
+3. Pengaruh n. Semakin banyak sampel yang diambil, sebaran rata-ratanya makin menyempit dan makin mirip normal. Letak pusatnya tidak berubah, tetap di μ.
+
+4. Tiga bentuk populasi. Semakin jauh bentuk populasi dari normal, semakin banyak sampel yang dibutuhkan agar rata-ratanya jadi normal. Karena itu angka 30 hanya patokan kasar, bukan aturan pasti.
+
+5. Peluang rata-rata > 5,5 jam. Peluangnya kecil (≈ 0,19), sedangkan peluang satu orang memakai layar > 5,5 jam jauh lebih besar (≈ 0,35). Artinya, rata-rata kelompok lebih stabil daripada perilaku individu.
+
+6. Proporsi. Pendekatan normal baru cocok kalau np dan n(1−p) sama-sama minimal 10. Pada n = 20 hasilnya jelek, pada n = 300 sudah bagus.
+
+7. SD dan SE. SD tidak berubah walau sampel bertambah (sekitar 3,55), tapi SE terus mengecil. Untuk menurunkan SE jadi setengahnya, sampel harus dikali empat.

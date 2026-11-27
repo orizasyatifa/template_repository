@@ -1,4 +1,6 @@
-# Pendahuluan
+# Distribusi Sampling
+
+## Pendahuluan
 
 **Program Studi:** Data Science **Konteks Sesi:** Pertemuan 10 – Konsep dan Uji Hipotesis
 
@@ -6,7 +8,7 @@ Dalam sidang pengadilan berlaku asas praduga tak bersalah: terdakwa dianggap tid
 
 Uji hipotesis bekerja dengan logika yang persis sama. Kita memulai dengan asumsi "tidak ada efek/perbedaan" ($H_0$), lalu bertanya: jika asumsi itu benar, seberapa mengejutkan data yang kita peroleh? Jika sangat mengejutkan, kita menolak asumsi tersebut. Pertemuan ini membangun kerangka konsepnya; Pertemuan 11–14 menerapkannya pada berbagai uji.
 
-## Tujuan Pembelajaran
+### Tujuan Pembelajaran
 
 Setelah menyelesaikan praktikum ini, mahasiswa mampu:
 
@@ -17,7 +19,7 @@ Setelah menyelesaikan praktikum ini, mahasiswa mampu:
 5. Menjelaskan kesalahan Tipe I dan Tipe II, power, serta faktor yang memengaruhinya melalui simulasi.
 6. Membedakan signifikansi statistik dan signifikansi praktis, serta mengenali penyalahgunaan p-value.
 
-## Peta Alur Belajar
+### Peta Alur Belajar
 
 | Tahap | Bagian | Fokus |
 |:--|:--|:--|
@@ -33,7 +35,7 @@ Setelah menyelesaikan praktikum ini, mahasiswa mampu:
 
 Praktikum ini hanya menggunakan base R (kecuali `knitr::kable()` untuk menampilkan tabel; paket ini sudah terpasang bersama Quarto/RStudio).
 
-# Logika Uji Hipotesis
+## Logika Uji Hipotesis
 
 | Pengadilan | Uji Hipotesis |
 |:--|:--|
@@ -46,7 +48,7 @@ Praktikum ini hanya menggunakan base R (kecuali `knitr::kable()` untuk menampilk
 | Menghukum orang tak bersalah | Kesalahan Tipe I |
 | Membebaskan orang bersalah | Kesalahan Tipe II |
 
-## Ilustrasi: Apakah Mesin Pengisi Masih Tepat?
+### Ilustrasi: Apakah Mesin Pengisi Masih Tepat?
 
 Melanjutkan latihan Pertemuan 9: mesin kopi bubuk seharusnya mengisi rata-rata 250 gram dengan $\sigma = 6$ gram. Sampel 36 kemasan menghasilkan $\bar{x} = 247{,}6$ gram. Apakah mesin perlu dikalibrasi, atau selisih 2,4 gram itu sekadar kebetulan sampling?
 
@@ -73,9 +75,9 @@ p_sim
 
 Jika mesin benar, rata-rata yang meleset 2,4 gram atau lebih (ke arah mana pun) hanya terjadi sekitar `r round(100 * p_sim, 1)`% dari waktu. Angka inilah yang disebut **p-value**. Karena sangat jarang, kita punya alasan kuat untuk meragukan bahwa mesin bekerja benar.
 
-# Merumuskan Hipotesis
+## Merumuskan Hipotesis
 
-## Hipotesis Nol dan Alternatif
+### Hipotesis Nol dan Alternatif
 
 | | Hipotesis Nol ($H_0$) | Hipotesis Alternatif ($H_1$ atau $H_a$) |
 |:--|:--|:--|
@@ -87,7 +89,7 @@ Jika mesin benar, rata-rata yang meleset 2,4 gram atau lebih (ke arah mana pun) 
 **Aturan penting:** hipotesis selalu dinyatakan tentang **parameter populasi** ($\mu$, $p$, $\sigma$), bukan statistik sampel. Menulis "$H_0: \bar{x} = 250$" adalah keliru, karena $\bar{x}$ sudah kita ketahui.
 :::
 
-## Tiga Bentuk Hipotesis
+### Tiga Bentuk Hipotesis
 
 | Bentuk | $H_0$ | $H_1$ | Daerah penolakan | Contoh pertanyaan |
 |:--|:--|:--|:--|:--|
@@ -95,7 +97,7 @@ Jika mesin benar, rata-rata yang meleset 2,4 gram atau lebih (ke arah mana pun) 
 | Satu arah kanan | $\mu \le \mu_0$ | $\mu > \mu_0$ | Ekor kanan | "Apakah rata-rata TSS melebihi baku mutu?" |
 | Satu arah kiri | $\mu \ge \mu_0$ | $\mu < \mu_0$ | Ekor kiri | "Apakah umur baterai kurang dari klaim 20 jam?" |
 
-## Menerjemahkan Kalimat Menjadi Hipotesis
+### Menerjemahkan Kalimat Menjadi Hipotesis
 
 | Kata kunci dalam klaim | Tanda di $H_1$ |
 |:--|:--:|
@@ -107,13 +109,13 @@ Jika mesin benar, rata-rata yang meleset 2,4 gram atau lebih (ke arah mana pun) 
 **Tentukan arah sebelum melihat data.** Memilih uji satu arah setelah melihat arah selisih pada data adalah kecurangan: p-value menjadi separuhnya secara tidak sah. Jika ragu, gunakan uji dua arah.
 :::
 
-# Komponen Uji Hipotesis
+## Komponen Uji Hipotesis
 
-## Tingkat Signifikansi ($\alpha$)
+### Tingkat Signifikansi ($\alpha$)
 
 $\alpha$ adalah batas peluang kesalahan Tipe I yang bersedia kita tanggung – peluang menolak $H_0$ padahal $H_0$ benar. Nilai yang umum: 0,05; 0,01; atau 0,10. $\alpha$ ditetapkan **sebelum** data dianalisis, berdasarkan seberapa mahal akibat kesalahan Tipe I.
 
-## Statistik Uji
+### Statistik Uji
 
 Statistik uji mengukur seberapa jauh estimasi sampel dari nilai $H_0$, dalam satuan standard error:
 
@@ -130,7 +132,7 @@ z_hitung
 
 Rata-rata sampel berada `r abs(round(z_hitung, 1))` standard error di bawah nilai yang diklaim.
 
-## Nilai Kritis dan Daerah Penolakan
+### Nilai Kritis dan Daerah Penolakan
 
 Nilai kritis adalah batas yang memisahkan daerah "tidak mengejutkan" dan daerah penolakan, ditentukan oleh $\alpha$ dan arah uji.
 
@@ -164,7 +166,7 @@ par(mfrow = c(1, 1))
 
 Daerah merah adalah daerah penolakan, luasnya $\alpha = 0{,}05$. Pada uji dua arah, $\alpha$ dibagi dua ke kedua ekor.
 
-## P-Value
+### P-Value
 
 ::: {.callout-tip}
 **P-value** adalah peluang memperoleh statistik uji **seekstrem atau lebih ekstrem** daripada yang teramati, **dengan asumsi $H_0$ benar**.
@@ -195,7 +197,7 @@ abline(v = c(-1.96, 1.96), lty = 2, col = "firebrick")
 text(z_hitung, 0.12, labels = paste0("z = ", round(z_hitung, 2)), pos = 2)
 ```
 
-## Keputusan: Dua Pendekatan yang Setara
+### Keputusan: Dua Pendekatan yang Setara
 
 | Pendekatan | Tolak $H_0$ jika | Contoh mesin kopi |
 |:--|:--|:--|
@@ -215,7 +217,7 @@ Kedua pendekatan selalu memberi keputusan yang sama. Pendekatan p-value lebih in
 "Gagal menolak $H_0$" **tidak sama** dengan "$H_0$ benar". Sama seperti "tidak terbukti bersalah" tidak berarti "terbukti tidak bersalah". Bisa jadi efeknya memang ada tetapi sampel kita terlalu kecil untuk mendeteksinya.
 :::
 
-# Prosedur Lima Langkah
+## Prosedur Lima Langkah
 
 | Langkah | Isi |
 |:--:|:--|
@@ -246,7 +248,7 @@ uji_z <- function(xbar, mu0, sigma, n, arah = c("dua", "kanan", "kiri"),
 }
 ```
 
-## Contoh 1 (Dua Arah): Mesin Pengisi Kopi
+### Contoh 1 (Dua Arah): Mesin Pengisi Kopi
 
 1. $H_0: \mu = 250$ gram (mesin tepat); $H_1: \mu \ne 250$ gram (mesin perlu dikalibrasi).
 2. $\alpha = 0{,}05$.
@@ -259,7 +261,7 @@ uji_z(xbar = 247.6, mu0 = 250, sigma = 6, n = 36, arah = "dua")
 4. $\lvert z \rvert = 2{,}4 > 1{,}96$ dan p-value $\approx 0{,}016 < 0{,}05 \Rightarrow$ tolak $H_0$.
 5. **Kesimpulan:** pada taraf signifikansi 5%, terdapat bukti yang cukup bahwa rata-rata pengisian mesin berbeda dari 250 gram (data menunjukkan cenderung kurang). Mesin sebaiknya diperiksa dan dikalibrasi.
 
-## Contoh 2 (Satu Arah Kanan): Klaim Waktu Pengiriman
+### Contoh 2 (Satu Arah Kanan): Klaim Waktu Pengiriman
 
 Sebuah layanan logistik mengklaim rata-rata waktu pengirimannya paling lama 48 jam. Asosiasi konsumen curiga waktunya lebih lama. Data historis menunjukkan $\sigma = 10$ jam. Sampel 50 pengiriman menghasilkan $\bar{x} = 50{,}1$ jam.
 
@@ -274,7 +276,7 @@ uji_z(xbar = 50.1, mu0 = 48, sigma = 10, n = 50, arah = "kanan")
 
 Perhatikan: jika asosiasi konsumen memakai uji dua arah, p-value-nya menjadi dua kali lipat (sekitar 0,14). Arah uji harus ditentukan dari pertanyaan penelitian **sebelum** melihat data.
 
-# Hubungan Uji Dua Arah dan Selang Kepercayaan
+## Hubungan Uji Dua Arah dan Selang Kepercayaan
 
 Uji dua arah dengan taraf $\alpha$ setara dengan memeriksa apakah $\mu_0$ berada di dalam selang kepercayaan $(1-\alpha) \times 100\%$:
 
@@ -293,9 +295,9 @@ round(ci, 3)
 
 Selang kepercayaan lebih informatif: selain keputusan, ia menunjukkan rentang nilai $\mu$ yang masuk akal – di sini rata-rata pengisian kemungkinan antara `r round(ci[1], 1)` dan `r round(ci[2], 1)` gram, sehingga kekurangannya kemungkinan antara `r round(250 - ci[2], 1)` dan `r round(250 - ci[1], 1)` gram per kemasan.
 
-# Kesalahan Tipe I, Tipe II, dan Power
+## Kesalahan Tipe I, Tipe II, dan Power
 
-## Tabel Keputusan
+### Tabel Keputusan
 
 | | $H_0$ benar | $H_0$ salah |
 |:--|:--|:--|
@@ -309,7 +311,7 @@ Selang kepercayaan lebih informatif: selain keputusan, ia menunjukkan rentang ni
 | Filter spam ($H_0$: bukan spam) | Email penting masuk folder spam | Spam lolos ke kotak masuk |
 | Uji A/B ($H_0$: desain baru tidak lebih baik) | Meluncurkan desain yang sebenarnya tidak lebih baik | Melewatkan desain yang sebenarnya lebih baik |
 
-## Simulasi: Kesalahan Tipe I Terjadi Sekitar $\alpha$ dari Waktu
+### Simulasi: Kesalahan Tipe I Terjadi Sekitar $\alpha$ dari Waktu
 
 Jika mesin benar-benar tepat ($\mu = 250$) dan kita menguji 10.000 sampel berbeda, berapa kali kita keliru menolak $H_0$?
 
@@ -333,7 +335,7 @@ abline(v = 0.05, col = "firebrick", lwd = 2)
 
 Ketika $H_0$ benar, p-value tersebar merata antara 0 dan 1; sekitar 5% di antaranya jatuh di bawah 0,05 murni karena kebetulan. Itulah makna $\alpha$.
 
-## Simulasi: Kesalahan Tipe II dan Power
+### Simulasi: Kesalahan Tipe II dan Power
 
 Sekarang anggap mesin benar-benar mengisi rata-rata 248 gram ($H_0$ salah). Seberapa sering uji kita mendeteksinya?
 
@@ -359,7 +361,7 @@ c(Power_simulasi = power_sim(248, 36),
 
 Dengan $n = 36$, uji hanya mendeteksi selisih 2 gram sekitar `r round(100 * power_teori(248, 36))`% dari waktu; sekitar `r round(100 * (1 - power_teori(248, 36)))`% dari waktu mesin yang salah setel lolos (kesalahan Tipe II).
 
-## Kurva Power: Faktor yang Memengaruhinya
+### Kurva Power: Faktor yang Memengaruhinya
 
 ```{r}
 #| fig-height: 4.2
@@ -398,9 +400,9 @@ n_power <- function(delta, sigma, alpha = 0.05, power = 0.80) {
 n_power(delta = 2, sigma = 6)
 ```
 
-# Menafsirkan Hasil Uji dengan Bijak
+## Menafsirkan Hasil Uji dengan Bijak
 
-## Signifikansi Statistik vs Signifikansi Praktis
+### Signifikansi Statistik vs Signifikansi Praktis
 
 Dengan sampel sangat besar, selisih yang sangat kecil pun menjadi "signifikan secara statistik".
 
@@ -414,7 +416,7 @@ knitr::kable(rbind(
 
 Selisih 0,2 gram per kemasan (0,08%) kemungkinan tidak penting secara praktis, meskipun signifikan secara statistik pada $n = 100.000$. Karena itu, selalu laporkan **besar efek** (selisih dan selang kepercayaannya), bukan hanya p-value.
 
-## Miskonsepsi tentang P-Value
+### Miskonsepsi tentang P-Value
 
 | Pernyataan | Benar/Salah | Penjelasan |
 |:--|:--:|:--|
@@ -425,7 +427,7 @@ Selisih 0,2 gram per kemasan (0,08%) kemungkinan tidak penting secara praktis, m
 | "$p = 0{,}049$ dan $p = 0{,}051$ memberi bukti yang sangat berbeda." | Salah | Keduanya menunjukkan kekuatan bukti yang hampir sama |
 | "Jika $H_0$ benar, p-value kurang dari 0,05 terjadi sekitar 5% dari waktu." | Benar | Inilah makna $\alpha$ |
 
-## Bahaya Uji Berganda (P-Hacking)
+### Bahaya Uji Berganda (P-Hacking)
 
 Jika kita menguji banyak hipotesis sekaligus – atau mencoba banyak cara analisis sampai ada yang "signifikan" – peluang setidaknya satu kesalahan Tipe I melonjak.
 
@@ -452,7 +454,7 @@ sum(p20 <= 0.05 / 20)
 p.adjust(sort(p20)[1:3], method = "bonferroni", n = 20)
 ```
 
-# Studi Kasus Komprehensif: Kepatuhan Baku Mutu TSS
+## Studi Kasus Komprehensif: Kepatuhan Baku Mutu TSS
 
 **Konteks:** Sebuah perusahaan membuang air olahan ke sungai dengan baku mutu TSS (misalnya) 50 mg/L untuk rata-rata bulanan. Regulator mengambil 30 sampel acak dalam sebulan. Dari pemantauan panjang, simpangan baku pengukuran diketahui $\sigma = 12$ mg/L.
 
@@ -462,7 +464,7 @@ tss <- round(rnorm(30, mean = 54, sd = 12), 1)
 round(c(n = length(tss), Mean = mean(tss), SD = sd(tss), Median = median(tss)), 2)
 ```
 
-## Langkah 1: Merumuskan Hipotesis – Siapa yang Menanggung Beban Pembuktian?
+### Langkah 1: Merumuskan Hipotesis – Siapa yang Menanggung Beban Pembuktian?
 
 Ada dua cara merumuskan hipotesis, dan pilihannya bukan sekadar teknis:
 
@@ -471,7 +473,7 @@ Ada dua cara merumuskan hipotesis, dan pilihannya bukan sekadar teknis:
 | A (praduga patuh) | $\mu \le 50$ | $\mu > 50$ | Perusahaan dianggap patuh sampai ada bukti kuat melanggar |
 | B (praduga melanggar) | $\mu \ge 50$ | $\mu < 50$ | Perusahaan harus membuktikan dirinya patuh |
 
-## Langkah 2–4: Menjalankan Kedua Rumusan
+### Langkah 2–4: Menjalankan Kedua Rumusan
 
 ```{r}
 #| tbl-cap: "Data yang sama, dua rumusan hipotesis"
@@ -482,7 +484,7 @@ hasil_tss <- rbind(
 knitr::kable(hasil_tss)
 ```
 
-## Langkah 5: Konsekuensi Kesalahan
+### Langkah 5: Konsekuensi Kesalahan
 
 | Rumusan | Kesalahan Tipe I | Kesalahan Tipe II |
 |:--|:--|:--|
@@ -500,7 +502,7 @@ pw_tss <- round(c(Power_n30 = power_kanan(55, 50, 12, 30),
 pw_tss
 ```
 
-## Pertanyaan Diskusi dan Jawaban
+### Pertanyaan Diskusi dan Jawaban
 
 1. **Apa kesimpulan rumusan A?**
 
@@ -518,9 +520,9 @@ pw_tss
 
    Rumusan $H_0$ menentukan siapa yang diuntungkan oleh keraguan. Pilihan itu harus didasarkan pada konsekuensi kesalahan di dunia nyata, ditetapkan **sebelum** data dilihat, dan dilaporkan secara terbuka.
 
-# Latihan Mandiri
+## Latihan Mandiri
 
-## Latihan Utama: Umur Baterai Ponsel
+### Latihan Utama: Umur Baterai Ponsel
 
 **Konteks:** Produsen mengklaim baterai ponselnya bertahan rata-rata 20 jam pemakaian normal. Lembaga konsumen menguji 40 unit. Dari spesifikasi pengujian standar, $\sigma = 2{,}5$ jam.
 
@@ -530,24 +532,24 @@ umur <- round(rnorm(40, mean = 19.3, sd = 2.5), 1)
 round(c(n = length(umur), Mean = mean(umur), SD = sd(umur)), 3)
 ```
 
-### Tugas 1: Rumuskan hipotesis
+#### Tugas 1: Rumuskan hipotesis
 
 Lembaga konsumen curiga umur baterai kurang dari yang diklaim.
 
 **Jawaban:** $H_0: \mu \ge 20$ jam (klaim benar); $H_1: \mu < 20$ jam (klaim berlebihan). Uji satu arah kiri.
 
-### Tugas 2: Hitung statistik uji, nilai kritis, dan p-value ($\alpha = 0{,}05$)
+#### Tugas 2: Hitung statistik uji, nilai kritis, dan p-value ($\alpha = 0{,}05$)
 
 ```{r}
 hasil_lat <- uji_z(mean(umur), mu0 = 20, sigma = 2.5, n = 40, arah = "kiri")
 hasil_lat
 ```
 
-### Tugas 3: Ambil keputusan dan tuliskan kesimpulan dalam konteks
+#### Tugas 3: Ambil keputusan dan tuliskan kesimpulan dalam konteks
 
 **Jawaban:** statistik uji $z =$ `r hasil_lat$z` dengan p-value `r hasil_lat$p_value`. Karena p-value kurang dari 0,05, $H_0$ ditolak: terdapat bukti yang cukup bahwa rata-rata umur baterai kurang dari 20 jam seperti yang diklaim.
 
-### Tugas 4: Bagaimana keputusannya jika $\alpha = 0{,}01$?
+#### Tugas 4: Bagaimana keputusannya jika $\alpha = 0{,}01$?
 
 ```{r}
 hasil_lat01 <- uji_z(mean(umur), mu0 = 20, sigma = 2.5, n = 40,
@@ -557,11 +559,11 @@ hasil_lat01
 
 **Jawaban:** pada $\alpha = 0{,}01$ nilai kritisnya `r round(hasil_lat01$z_kritis, 3)`, sehingga keputusannya menjadi **`r hasil_lat01$keputusan`**. Keputusan dapat berubah menurut $\alpha$ – itulah sebabnya $\alpha$ harus ditetapkan sebelum melihat data, dan p-value sebaiknya dilaporkan apa adanya agar pembaca dapat menilai sendiri kekuatan buktinya.
 
-### Tugas 5: Jelaskan kesalahan Tipe I dan II dalam konteks ini
+#### Tugas 5: Jelaskan kesalahan Tipe I dan II dalam konteks ini
 
 **Jawaban:** **Tipe I** – lembaga menyatakan klaim produsen berlebihan padahal baterai sebenarnya bertahan rata-rata 20 jam (merugikan reputasi produsen). **Tipe II** – lembaga menyatakan tidak ada bukti klaim berlebihan padahal baterai sebenarnya bertahan kurang dari 20 jam (merugikan konsumen).
 
-### Tugas 6 (Tantangan): Power dan ukuran sampel
+#### Tugas 6 (Tantangan): Power dan ukuran sampel
 
 Hitung power uji ini untuk mendeteksi umur sebenarnya 19 jam, lalu tentukan $n$ agar power-nya 90%.
 
@@ -573,14 +575,14 @@ power_kiri <- function(mu_benar, mu0, sigma, n, alpha = 0.05) {
 pw_bat <- round(power_kiri(19, 20, 2.5, 40), 3)
 pw_bat
 
-# n satu arah, power 90%
+## n satu arah, power 90%
 n_bat <- ceiling(((qnorm(0.95) + qnorm(0.90)) * 2.5 / 1)^2)
 n_bat
 ```
 
 **Jawaban:** dengan 40 unit, selisih 1 jam terdeteksi sekitar `r round(100 * pw_bat)`% dari waktu. Untuk power 90% dibutuhkan sekitar `r n_bat` unit.
 
-## Latihan Tambahan (Self-Check)
+### Latihan Tambahan (Self-Check)
 
 Kerjakan soal-soal berikut secara mandiri sebelum melihat kunci jawaban pada komentar kode.
 
@@ -625,7 +627,7 @@ Kerjakan soal-soal berikut secara mandiri sebelum melihat kunci jawaban pada kom
 0.05 / 15     # batas Bonferroni = 0.0033; p = 0.03 > 0.0033 -> TIDAK signifikan setelah koreksi
 ```
 
-# Kesalahan Umum dalam Uji Hipotesis
+## Kesalahan Umum dalam Uji Hipotesis
 
 1. Menulis hipotesis tentang statistik sampel ($H_0: \bar{x} = 250$) – hipotesis selalu tentang parameter.
 2. Menaruh kesamaan di $H_1$ – tanda $=$, $\le$, $\ge$ selalu berada di $H_0$.
@@ -639,7 +641,7 @@ Kerjakan soal-soal berikut secara mandiri sebelum melihat kunci jawaban pada kom
 10. Hanya menulis "tolak $H_0$" tanpa kesimpulan dalam konteks – pembaca perlu tahu artinya bagi masalah nyata.
 11. Mengabaikan konsekuensi dunia nyata saat merumuskan $H_0$ – rumusan menentukan siapa yang diuntungkan oleh keraguan.
 
-# Cheat Sheet: Fungsi R yang Digunakan
+## Cheat Sheet: Fungsi R yang Digunakan
 
 | Fungsi | Kegunaan |
 |:--|:--|
@@ -655,7 +657,7 @@ Kerjakan soal-soal berikut secara mandiri sebelum melihat kunci jawaban pada kom
 | `ceiling()` | Membulatkan ukuran sampel ke atas |
 | `ifelse(p <= alpha, ...)` | Menuliskan keputusan otomatis |
 
-# Glosarium Istilah
+## Glosarium Istilah
 
 | Istilah | Definisi Singkat |
 |:--|:--|
@@ -679,7 +681,7 @@ Kerjakan soal-soal berikut secara mandiri sebelum melihat kunci jawaban pada kom
 | Uji Berganda | Melakukan banyak uji sekaligus sehingga peluang *false positive* naik |
 | Koreksi Bonferroni | Memakai $\alpha/m$ untuk setiap dari $m$ uji |
 
-# Rangkuman dan Kesimpulan
+## Rangkuman dan Kesimpulan
 
 1. Logika uji hipotesis sama dengan pengadilan: asumsikan $H_0$ benar, lalu nilai seberapa mengejutkan data; tolak $H_0$ hanya jika bukti kuat.
 2. Hipotesis dinyatakan tentang parameter; $H_0$ selalu memuat kesamaan; arah uji ditentukan dari pertanyaan penelitian sebelum melihat data.
@@ -690,7 +692,7 @@ Kerjakan soal-soal berikut secara mandiri sebelum melihat kunci jawaban pada kom
 
 **Jembatan ke sesi berikutnya:** hari ini kita memakai uji z dengan $\sigma$ diketahui sebagai kendaraan untuk memahami konsep. Pertemuan 11 membahas situasi yang jauh lebih sering dijumpai – $\sigma$ tidak diketahui – dengan uji t satu sampel, dua sampel independen, dan berpasangan, beserta uji z dua sampel.
 
-# Referensi Pendukung
+## Referensi Pendukung
 
 Materi ini merangkum konsep dasar uji hipotesis (*fundamentals of hypothesis testing*) yang umum dibahas pada buku teks pengantar statistika bisnis/data science. Mahasiswa disarankan melengkapi pemahaman dengan merujuk pada:
 
@@ -698,3 +700,25 @@ Materi ini merangkum konsep dasar uji hipotesis (*fundamentals of hypothesis tes
 - Wasserstein, R. L., & Lazar, N. A. (2016). The ASA Statement on p-Values: Context, Process, and Purpose. *The American Statistician*, 70(2), 129–133.
 - Buku teks pengantar statistika pada bab *Fundamentals of Hypothesis Testing: One-Sample Tests*.
 - Dokumentasi resmi R: `?pnorm`, `?qnorm`, `?p.adjust`, `?polygon` (dapat diakses langsung di R/RStudio).
+
+## Interpretasi
+
+1. Mesin kopi. Mesin harusnya mengisi 250 gram, tapi rata-rata sampel cuma 247,6 gram. Kalau mesinnya memang benar, selisih segini jarang banget terjadi, cuma sekitar 1,6%. Jadi kemungkinan besar mesinnya memang sudah tidak pas.
+
+2. P-value. Nilainya sekitar 0,016, kecil banget. Artinya hasil seperti ini hampir tidak mungkin muncul kalau mesinnya benar.
+
+3. Keputusan. Karena p-value di bawah 0,05, kita tolak H₀. Jadi rata-rata isi mesin memang beda dari 250 gram (cenderung kurang) dan perlu dikalibrasi.
+
+4. Waktu pengiriman. P-value-nya 0,069, sedikit di atas 0,05, jadi kita gagal tolak H₀. Buktinya belum cukup untuk bilang pengiriman lebih dari 48 jam. Bukan berarti perusahaannya pasti jujur, cuma datanya belum cukup kuat.
+
+5. Hubungan dengan selang kepercayaan. Angka 250 ada di luar selang 95% (sekitar 245,6 sampai 249,6 gram). Jadi hasilnya nyambung dengan keputusan tolak H₀.
+
+6. Simulasi kesalahan Tipe I. Kalau mesinnya sebenarnya benar, ternyata masih ada sekitar 5% sampel yang salah ditolak. Angkanya sama dengan batas signifikansi yang kita pakai, jadi memang wajar.
+
+7. Simulasi power. Kalau mesinnya sebenarnya mengisi 248 gram dan sampelnya 36 kemasan, ujinya cuma bisa mendeteksi kurang lebih separuh dari waktu. Sisanya lolos begitu saja. Supaya lebih sering terdeteksi, sampelnya harus ditambah, sekitar 71 kemasan untuk power 80%.
+
+8. Hal yang memengaruhi power. Power makin besar kalau selisih sebenarnya besar, sampelnya banyak, atau batas signifikansinya dilonggarkan. Power mengecil kalau datanya terlalu bervariasi. Kalau kita memperkecil risiko salah tolak, risiko gagal mendeteksi malah naik. Satu-satunya cara menurunkan keduanya sekaligus ya dengan menambah sampel.
+
+9. Signifikan secara statistik vs praktis. Selisih 0,2 gram tidak signifikan kalau sampelnya 36, tapi jadi sangat signifikan kalau sampelnya 100.000. Padahal selisihnya sama-sama kecil. Jadi jangan cuma lihat p-value, seberapa besar selisihnya juga perlu dilihat.
+
+10. P-hacking. Makin banyak hal yang diuji, makin besar peluang ketemu hasil "signifikan" yang sebenarnya cuma kebetulan. Kalau ada 20 uji, peluangnya sudah sekitar 64%. Solusinya, batas signifikansi tiap uji dibuat lebih ketat (koreksi Bonferroni).

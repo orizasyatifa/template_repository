@@ -115,13 +115,13 @@ quarto render --to pdf
 Sebelum publikasi, buka file `_quarto.yml` dan ganti alamat berikut:
 
 ```yaml
-repo-url: https://github.com/USERNAME/REPOSITORY
+repo-url: https://github.com/orizasyatifa?tab=repositories
 ```
 
 Contoh:
 
 ```yaml
-repo-url: https://github.com/pakardata1/ebook-template-quarto.git
+repo-url: https://github.com/orizasyatifa/template_repository.git
 ```
 
 Ganti `USERNAME` dengan nama akun GitHub dan `REPOSITORY` dengan nama repositori yang digunakan.
@@ -147,7 +147,7 @@ git init
 git add .
 git commit -m "Initial Quarto book project"
 git branch -M main
-git remote add origin https://github.com/pakardata1/ebook-template-quarto.git
+git remote add origin https://github.com/orizasyatifa/template_repository.git
 git push -u origin main
 ```
 
@@ -172,7 +172,7 @@ Pastikan folder `docs/` sudah terbentuk, lalu unggah folder tersebut beserta sum
 Jika publikasi berhasil, alamat buku biasanya berbentuk:
 
 ```text
-https://pakardata1.github.io/ebook-template-quarto/
+https://github.com/orizasyatifa/template_repository.git
 ```
 
 Alamat final dapat dilihat pada **Settings → Pages**.

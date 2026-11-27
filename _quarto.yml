@@ -8,12 +8,12 @@ project:
     - assets/epub-reader.js
 
 book:
-  title: "Tugas Statistika"
+  title: "Pratikum statistika"
   author: "Oriza Syatifa"
   date: today
   description: "Deskripsi singkat tentang buku"
-  cover-image: images/Cover.jpeg
-  repo-url: https://github.com/pakardata1/ebook-template-quarto.git
+  cover-image: images/Cover.png
+  repo-url: https://github.com/orizasyatifa/template_repository.git
   repo-actions: [edit, issue]
   sidebar:
     tools:
@@ -61,7 +61,7 @@ format:
     number-sections: true
     toc: true
   epub:
-    cover-image: images/Cover.jpeg
+    cover-image: images/Cover.png
 
 execute:
   freeze: auto

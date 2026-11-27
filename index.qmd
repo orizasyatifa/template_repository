@@ -30,8 +30,8 @@ Penulis
 
 ![Foto oriza syatifa](images/author/orizaa.jpeg){.author-portrait width=1.5in fig-align="right" fig-pos="H"}
 
-**[oriza syatifa](https://www.linkedin.com/in/dsciencelabs/)** bekerja sebagai Dosen di Prodi Sains Data Institut Teknologi Sains Bandung. Beliau adalah meraih gelar Magister-nya dari Departemen Matematika Terapan (Applied Mathematics) National Sun Yat Sen University, Taiwan. Selain mengajar beliau juga pernah bekerja sebagai **Data Scientist Freelance** di perusahaan-perusahaan ternama seperti [JNE](https://www.jne.co.id/id/beranda), [Samora Group](https://www.samoragroup.co.id/home/en), [Pertamina](https://www.pertamina.com/), dan saat ini masih aktif sebagai **Data Scientist Freelance** di [PT. Green City Traffic](PT. Green City Traffic). Beliau memiliki antusiasme khusus dalam mengerjakan proyek (mengajar) Big Data Analytics, Machine Learning, Optimisasi, dan Analisis Time Series di bidang keuangan dan investasi. Keahlian utama yang dimilikinya adalah bahasa pemrograman Statistik seperti R Studio dan Python. Beliau juga sudah terbiasa dalam mengaplikasikan sistem basis data MySQL/NoSQL untuk manajemen data, serta mahir dalam menggunakan tools Big Data seperti Spark dan Hadoop. Beberapa project beliau dapat dilihat di link berikut: [Rpubs](https://rpubs.com/dsciencelabs), [Github](https://github.com/dsciencelabs), [Website](https://dsciencelabs.github.io/web/index.html), dan [Kaggle](https://www.kaggle.com/siregar/code). 
-
+**[oriza syatifa](https://www.linkedin.com/in/oriza-syatifa-46826a440/)** adalah mahasiswa Program Studi Sains Data Institut Teknologi Sains Bandung (ITSB) angkatan 2026. Ia tertarik pada dunia data secara luas, terutama cara mengubah data menjadi informasi yang berguna dan mudah dipahami. Saat ini ia sedang mendalami ilmu sains data ,[Github](https://github.com/orizasyatifa)
+ 
 
 ## Ucapan Terima Kasih 
 
@@ -48,4 +48,4 @@ Saya berharap Template eBook ini dapat menjadi referensi yang bermanfaat dan mem
 
 Semua masukan dan tanggapan Anda sangat berarti bagi kami untuk memperbaiki Ebook Quarto Template ini kedepannya. Bagi para pembaca/pengguna yang ingin menyampaikan masukan dan tanggapan, dipersilahkan melalui kontak dibawah ini!
 
-**Email:** dsciencelabs@outlook.com
+**Email:** orizasyatifa1132008@gmail.com

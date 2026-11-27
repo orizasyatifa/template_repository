@@ -8,7 +8,7 @@
 
 <meta name="description" content="Deskripsi singkat tentang buku">
 
-<title>2&nbsp; Pendahuluan – Tugas Statistika</title>
+<title>2&nbsp; Distribusi Sampling – Pratikum statistika</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -157,7 +157,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alihkan bilah sisi" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Jalur"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/bab-2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pendahuluan</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Jalur"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/bab-2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Distribusi Sampling</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Mencari" onclick="window.quartoOpenSearch();">
@@ -172,11 +172,11 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Situs web">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Tugas Statistika</a> 
+      <a href="../">Pratikum statistika</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="../Tugas-Statistika.pdf" title="Pratinjau PDF" class="quarto-navigation-tool px-1" aria-label="Pratinjau PDF"><i class="bi bi-file-pdf"></i></a>
     <a href="../epub-reader.html" title="Pratinjau EPUB" class="quarto-navigation-tool px-1" aria-label="Pratinjau EPUB"><i class="bi bi-journal"></i></a>
-    <a href="https://github.com/pakardata1/ebook-template-quarto.git" title="Kode Sumber" class="quarto-navigation-tool px-1" aria-label="Kode Sumber"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/orizasyatifa/template_repository.git" title="Kode Sumber" class="quarto-navigation-tool px-1" aria-label="Kode Sumber"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -196,13 +196,13 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/bab-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distribusi Sampling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Populasi Simulasi</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/bab-2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pendahuluan</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Distribusi Sampling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -227,79 +227,75 @@ window.Quarto = {
     <h2 id="toc-title">Daftar Isi</h2>
    
   <ul>
-  <li><a href="#tujuan-pembelajaran" id="toc-tujuan-pembelajaran" class="nav-link active" data-scroll-target="#tujuan-pembelajaran"><span class="header-section-number">2.1</span> Tujuan Pembelajaran</a></li>
-  <li><a href="#peta-alur-belajar" id="toc-peta-alur-belajar" class="nav-link" data-scroll-target="#peta-alur-belajar"><span class="header-section-number">2.2</span> Peta Alur Belajar</a></li>
-  <li><a href="#logika-uji-hipotesis" id="toc-logika-uji-hipotesis" class="nav-link" data-scroll-target="#logika-uji-hipotesis"><span class="header-section-number">3</span> Logika Uji Hipotesis</a>
+  <li><a href="#pendahuluan" id="toc-pendahuluan" class="nav-link active" data-scroll-target="#pendahuluan"><span class="header-section-number">2.1</span> Pendahuluan</a>
   <ul class="collapse">
-  <li><a href="#ilustrasi-apakah-mesin-pengisi-masih-tepat" id="toc-ilustrasi-apakah-mesin-pengisi-masih-tepat" class="nav-link" data-scroll-target="#ilustrasi-apakah-mesin-pengisi-masih-tepat"><span class="header-section-number">3.1</span> Ilustrasi: Apakah Mesin Pengisi Masih Tepat?</a></li>
+  <li><a href="#tujuan-pembelajaran" id="toc-tujuan-pembelajaran" class="nav-link" data-scroll-target="#tujuan-pembelajaran"><span class="header-section-number">2.1.1</span> Tujuan Pembelajaran</a></li>
+  <li><a href="#peta-alur-belajar" id="toc-peta-alur-belajar" class="nav-link" data-scroll-target="#peta-alur-belajar"><span class="header-section-number">2.1.2</span> Peta Alur Belajar</a></li>
   </ul></li>
-  <li><a href="#merumuskan-hipotesis" id="toc-merumuskan-hipotesis" class="nav-link" data-scroll-target="#merumuskan-hipotesis"><span class="header-section-number">4</span> Merumuskan Hipotesis</a>
+  <li><a href="#logika-uji-hipotesis" id="toc-logika-uji-hipotesis" class="nav-link" data-scroll-target="#logika-uji-hipotesis"><span class="header-section-number">2.2</span> Logika Uji Hipotesis</a>
   <ul class="collapse">
-  <li><a href="#hipotesis-nol-dan-alternatif" id="toc-hipotesis-nol-dan-alternatif" class="nav-link" data-scroll-target="#hipotesis-nol-dan-alternatif"><span class="header-section-number">4.1</span> Hipotesis Nol dan Alternatif</a></li>
-  <li><a href="#tiga-bentuk-hipotesis" id="toc-tiga-bentuk-hipotesis" class="nav-link" data-scroll-target="#tiga-bentuk-hipotesis"><span class="header-section-number">4.2</span> Tiga Bentuk Hipotesis</a></li>
-  <li><a href="#menerjemahkan-kalimat-menjadi-hipotesis" id="toc-menerjemahkan-kalimat-menjadi-hipotesis" class="nav-link" data-scroll-target="#menerjemahkan-kalimat-menjadi-hipotesis"><span class="header-section-number">4.3</span> Menerjemahkan Kalimat Menjadi Hipotesis</a></li>
+  <li><a href="#ilustrasi-apakah-mesin-pengisi-masih-tepat" id="toc-ilustrasi-apakah-mesin-pengisi-masih-tepat" class="nav-link" data-scroll-target="#ilustrasi-apakah-mesin-pengisi-masih-tepat"><span class="header-section-number">2.2.1</span> Ilustrasi: Apakah Mesin Pengisi Masih Tepat?</a></li>
   </ul></li>
-  <li><a href="#komponen-uji-hipotesis" id="toc-komponen-uji-hipotesis" class="nav-link" data-scroll-target="#komponen-uji-hipotesis"><span class="header-section-number">5</span> Komponen Uji Hipotesis</a>
+  <li><a href="#merumuskan-hipotesis" id="toc-merumuskan-hipotesis" class="nav-link" data-scroll-target="#merumuskan-hipotesis"><span class="header-section-number">2.3</span> Merumuskan Hipotesis</a>
   <ul class="collapse">
-  <li><a href="#tingkat-signifikansi-alpha" id="toc-tingkat-signifikansi-alpha" class="nav-link" data-scroll-target="#tingkat-signifikansi-alpha"><span class="header-section-number">5.1</span> Tingkat Signifikansi (<span class="math inline">\(\alpha\)</span>)</a></li>
-  <li><a href="#statistik-uji" id="toc-statistik-uji" class="nav-link" data-scroll-target="#statistik-uji"><span class="header-section-number">5.2</span> Statistik Uji</a></li>
-  <li><a href="#nilai-kritis-dan-daerah-penolakan" id="toc-nilai-kritis-dan-daerah-penolakan" class="nav-link" data-scroll-target="#nilai-kritis-dan-daerah-penolakan"><span class="header-section-number">5.3</span> Nilai Kritis dan Daerah Penolakan</a></li>
-  <li><a href="#p-value" id="toc-p-value" class="nav-link" data-scroll-target="#p-value"><span class="header-section-number">5.4</span> P-Value</a></li>
-  <li><a href="#keputusan-dua-pendekatan-yang-setara" id="toc-keputusan-dua-pendekatan-yang-setara" class="nav-link" data-scroll-target="#keputusan-dua-pendekatan-yang-setara"><span class="header-section-number">5.5</span> Keputusan: Dua Pendekatan yang Setara</a></li>
+  <li><a href="#hipotesis-nol-dan-alternatif" id="toc-hipotesis-nol-dan-alternatif" class="nav-link" data-scroll-target="#hipotesis-nol-dan-alternatif"><span class="header-section-number">2.3.1</span> Hipotesis Nol dan Alternatif</a></li>
+  <li><a href="#tiga-bentuk-hipotesis" id="toc-tiga-bentuk-hipotesis" class="nav-link" data-scroll-target="#tiga-bentuk-hipotesis"><span class="header-section-number">2.3.2</span> Tiga Bentuk Hipotesis</a></li>
+  <li><a href="#menerjemahkan-kalimat-menjadi-hipotesis" id="toc-menerjemahkan-kalimat-menjadi-hipotesis" class="nav-link" data-scroll-target="#menerjemahkan-kalimat-menjadi-hipotesis"><span class="header-section-number">2.3.3</span> Menerjemahkan Kalimat Menjadi Hipotesis</a></li>
   </ul></li>
-  <li><a href="#prosedur-lima-langkah" id="toc-prosedur-lima-langkah" class="nav-link" data-scroll-target="#prosedur-lima-langkah"><span class="header-section-number">6</span> Prosedur Lima Langkah</a>
+  <li><a href="#komponen-uji-hipotesis" id="toc-komponen-uji-hipotesis" class="nav-link" data-scroll-target="#komponen-uji-hipotesis"><span class="header-section-number">2.4</span> Komponen Uji Hipotesis</a>
   <ul class="collapse">
-  <li><a href="#contoh-1-dua-arah-mesin-pengisi-kopi" id="toc-contoh-1-dua-arah-mesin-pengisi-kopi" class="nav-link" data-scroll-target="#contoh-1-dua-arah-mesin-pengisi-kopi"><span class="header-section-number">6.1</span> Contoh 1 (Dua Arah): Mesin Pengisi Kopi</a></li>
-  <li><a href="#contoh-2-satu-arah-kanan-klaim-waktu-pengiriman" id="toc-contoh-2-satu-arah-kanan-klaim-waktu-pengiriman" class="nav-link" data-scroll-target="#contoh-2-satu-arah-kanan-klaim-waktu-pengiriman"><span class="header-section-number">6.2</span> Contoh 2 (Satu Arah Kanan): Klaim Waktu Pengiriman</a></li>
+  <li><a href="#tingkat-signifikansi-alpha" id="toc-tingkat-signifikansi-alpha" class="nav-link" data-scroll-target="#tingkat-signifikansi-alpha"><span class="header-section-number">2.4.1</span> Tingkat Signifikansi (<span class="math inline">\(\alpha\)</span>)</a></li>
+  <li><a href="#statistik-uji" id="toc-statistik-uji" class="nav-link" data-scroll-target="#statistik-uji"><span class="header-section-number">2.4.2</span> Statistik Uji</a></li>
+  <li><a href="#nilai-kritis-dan-daerah-penolakan" id="toc-nilai-kritis-dan-daerah-penolakan" class="nav-link" data-scroll-target="#nilai-kritis-dan-daerah-penolakan"><span class="header-section-number">2.4.3</span> Nilai Kritis dan Daerah Penolakan</a></li>
+  <li><a href="#p-value" id="toc-p-value" class="nav-link" data-scroll-target="#p-value"><span class="header-section-number">2.4.4</span> P-Value</a></li>
+  <li><a href="#keputusan-dua-pendekatan-yang-setara" id="toc-keputusan-dua-pendekatan-yang-setara" class="nav-link" data-scroll-target="#keputusan-dua-pendekatan-yang-setara"><span class="header-section-number">2.4.5</span> Keputusan: Dua Pendekatan yang Setara</a></li>
   </ul></li>
-  <li><a href="#hubungan-uji-dua-arah-dan-selang-kepercayaan" id="toc-hubungan-uji-dua-arah-dan-selang-kepercayaan" class="nav-link" data-scroll-target="#hubungan-uji-dua-arah-dan-selang-kepercayaan"><span class="header-section-number">7</span> Hubungan Uji Dua Arah dan Selang Kepercayaan</a></li>
-  <li><a href="#kesalahan-tipe-i-tipe-ii-dan-power" id="toc-kesalahan-tipe-i-tipe-ii-dan-power" class="nav-link" data-scroll-target="#kesalahan-tipe-i-tipe-ii-dan-power"><span class="header-section-number">8</span> Kesalahan Tipe I, Tipe II, dan Power</a>
+  <li><a href="#prosedur-lima-langkah" id="toc-prosedur-lima-langkah" class="nav-link" data-scroll-target="#prosedur-lima-langkah"><span class="header-section-number">2.5</span> Prosedur Lima Langkah</a>
   <ul class="collapse">
-  <li><a href="#tabel-keputusan" id="toc-tabel-keputusan" class="nav-link" data-scroll-target="#tabel-keputusan"><span class="header-section-number">8.1</span> Tabel Keputusan</a></li>
-  <li><a href="#simulasi-kesalahan-tipe-i-terjadi-sekitar-alpha-dari-waktu" id="toc-simulasi-kesalahan-tipe-i-terjadi-sekitar-alpha-dari-waktu" class="nav-link" data-scroll-target="#simulasi-kesalahan-tipe-i-terjadi-sekitar-alpha-dari-waktu"><span class="header-section-number">8.2</span> Simulasi: Kesalahan Tipe I Terjadi Sekitar <span class="math inline">\(\alpha\)</span> dari Waktu</a></li>
-  <li><a href="#simulasi-kesalahan-tipe-ii-dan-power" id="toc-simulasi-kesalahan-tipe-ii-dan-power" class="nav-link" data-scroll-target="#simulasi-kesalahan-tipe-ii-dan-power"><span class="header-section-number">8.3</span> Simulasi: Kesalahan Tipe II dan Power</a></li>
-  <li><a href="#kurva-power-faktor-yang-memengaruhinya" id="toc-kurva-power-faktor-yang-memengaruhinya" class="nav-link" data-scroll-target="#kurva-power-faktor-yang-memengaruhinya"><span class="header-section-number">8.4</span> Kurva Power: Faktor yang Memengaruhinya</a></li>
+  <li><a href="#contoh-1-dua-arah-mesin-pengisi-kopi" id="toc-contoh-1-dua-arah-mesin-pengisi-kopi" class="nav-link" data-scroll-target="#contoh-1-dua-arah-mesin-pengisi-kopi"><span class="header-section-number">2.5.1</span> Contoh 1 (Dua Arah): Mesin Pengisi Kopi</a></li>
+  <li><a href="#contoh-2-satu-arah-kanan-klaim-waktu-pengiriman" id="toc-contoh-2-satu-arah-kanan-klaim-waktu-pengiriman" class="nav-link" data-scroll-target="#contoh-2-satu-arah-kanan-klaim-waktu-pengiriman"><span class="header-section-number">2.5.2</span> Contoh 2 (Satu Arah Kanan): Klaim Waktu Pengiriman</a></li>
   </ul></li>
-  <li><a href="#menafsirkan-hasil-uji-dengan-bijak" id="toc-menafsirkan-hasil-uji-dengan-bijak" class="nav-link" data-scroll-target="#menafsirkan-hasil-uji-dengan-bijak"><span class="header-section-number">9</span> Menafsirkan Hasil Uji dengan Bijak</a>
+  <li><a href="#hubungan-uji-dua-arah-dan-selang-kepercayaan" id="toc-hubungan-uji-dua-arah-dan-selang-kepercayaan" class="nav-link" data-scroll-target="#hubungan-uji-dua-arah-dan-selang-kepercayaan"><span class="header-section-number">2.6</span> Hubungan Uji Dua Arah dan Selang Kepercayaan</a></li>
+  <li><a href="#kesalahan-tipe-i-tipe-ii-dan-power" id="toc-kesalahan-tipe-i-tipe-ii-dan-power" class="nav-link" data-scroll-target="#kesalahan-tipe-i-tipe-ii-dan-power"><span class="header-section-number">2.7</span> Kesalahan Tipe I, Tipe II, dan Power</a>
   <ul class="collapse">
-  <li><a href="#signifikansi-statistik-vs-signifikansi-praktis" id="toc-signifikansi-statistik-vs-signifikansi-praktis" class="nav-link" data-scroll-target="#signifikansi-statistik-vs-signifikansi-praktis"><span class="header-section-number">9.1</span> Signifikansi Statistik vs Signifikansi Praktis</a></li>
-  <li><a href="#miskonsepsi-tentang-p-value" id="toc-miskonsepsi-tentang-p-value" class="nav-link" data-scroll-target="#miskonsepsi-tentang-p-value"><span class="header-section-number">9.2</span> Miskonsepsi tentang P-Value</a></li>
-  <li><a href="#bahaya-uji-berganda-p-hacking" id="toc-bahaya-uji-berganda-p-hacking" class="nav-link" data-scroll-target="#bahaya-uji-berganda-p-hacking"><span class="header-section-number">9.3</span> Bahaya Uji Berganda (P-Hacking)</a></li>
+  <li><a href="#tabel-keputusan" id="toc-tabel-keputusan" class="nav-link" data-scroll-target="#tabel-keputusan"><span class="header-section-number">2.7.1</span> Tabel Keputusan</a></li>
+  <li><a href="#simulasi-kesalahan-tipe-i-terjadi-sekitar-alpha-dari-waktu" id="toc-simulasi-kesalahan-tipe-i-terjadi-sekitar-alpha-dari-waktu" class="nav-link" data-scroll-target="#simulasi-kesalahan-tipe-i-terjadi-sekitar-alpha-dari-waktu"><span class="header-section-number">2.7.2</span> Simulasi: Kesalahan Tipe I Terjadi Sekitar <span class="math inline">\(\alpha\)</span> dari Waktu</a></li>
+  <li><a href="#simulasi-kesalahan-tipe-ii-dan-power" id="toc-simulasi-kesalahan-tipe-ii-dan-power" class="nav-link" data-scroll-target="#simulasi-kesalahan-tipe-ii-dan-power"><span class="header-section-number">2.7.3</span> Simulasi: Kesalahan Tipe II dan Power</a></li>
+  <li><a href="#kurva-power-faktor-yang-memengaruhinya" id="toc-kurva-power-faktor-yang-memengaruhinya" class="nav-link" data-scroll-target="#kurva-power-faktor-yang-memengaruhinya"><span class="header-section-number">2.7.4</span> Kurva Power: Faktor yang Memengaruhinya</a></li>
   </ul></li>
-  <li><a href="#studi-kasus-komprehensif-kepatuhan-baku-mutu-tss" id="toc-studi-kasus-komprehensif-kepatuhan-baku-mutu-tss" class="nav-link" data-scroll-target="#studi-kasus-komprehensif-kepatuhan-baku-mutu-tss"><span class="header-section-number">10</span> Studi Kasus Komprehensif: Kepatuhan Baku Mutu TSS</a>
+  <li><a href="#menafsirkan-hasil-uji-dengan-bijak" id="toc-menafsirkan-hasil-uji-dengan-bijak" class="nav-link" data-scroll-target="#menafsirkan-hasil-uji-dengan-bijak"><span class="header-section-number">2.8</span> Menafsirkan Hasil Uji dengan Bijak</a>
   <ul class="collapse">
-  <li><a href="#langkah-1-merumuskan-hipotesis-siapa-yang-menanggung-beban-pembuktian" id="toc-langkah-1-merumuskan-hipotesis-siapa-yang-menanggung-beban-pembuktian" class="nav-link" data-scroll-target="#langkah-1-merumuskan-hipotesis-siapa-yang-menanggung-beban-pembuktian"><span class="header-section-number">10.1</span> Langkah 1: Merumuskan Hipotesis – Siapa yang Menanggung Beban Pembuktian?</a></li>
-  <li><a href="#langkah-24-menjalankan-kedua-rumusan" id="toc-langkah-24-menjalankan-kedua-rumusan" class="nav-link" data-scroll-target="#langkah-24-menjalankan-kedua-rumusan"><span class="header-section-number">10.2</span> Langkah 2–4: Menjalankan Kedua Rumusan</a></li>
-  <li><a href="#langkah-5-konsekuensi-kesalahan" id="toc-langkah-5-konsekuensi-kesalahan" class="nav-link" data-scroll-target="#langkah-5-konsekuensi-kesalahan"><span class="header-section-number">10.3</span> Langkah 5: Konsekuensi Kesalahan</a></li>
-  <li><a href="#pertanyaan-diskusi-dan-jawaban" id="toc-pertanyaan-diskusi-dan-jawaban" class="nav-link" data-scroll-target="#pertanyaan-diskusi-dan-jawaban"><span class="header-section-number">10.4</span> Pertanyaan Diskusi dan Jawaban</a></li>
+  <li><a href="#signifikansi-statistik-vs-signifikansi-praktis" id="toc-signifikansi-statistik-vs-signifikansi-praktis" class="nav-link" data-scroll-target="#signifikansi-statistik-vs-signifikansi-praktis"><span class="header-section-number">2.8.1</span> Signifikansi Statistik vs Signifikansi Praktis</a></li>
+  <li><a href="#miskonsepsi-tentang-p-value" id="toc-miskonsepsi-tentang-p-value" class="nav-link" data-scroll-target="#miskonsepsi-tentang-p-value"><span class="header-section-number">2.8.2</span> Miskonsepsi tentang P-Value</a></li>
+  <li><a href="#bahaya-uji-berganda-p-hacking" id="toc-bahaya-uji-berganda-p-hacking" class="nav-link" data-scroll-target="#bahaya-uji-berganda-p-hacking"><span class="header-section-number">2.8.3</span> Bahaya Uji Berganda (P-Hacking)</a></li>
   </ul></li>
-  <li><a href="#latihan-mandiri" id="toc-latihan-mandiri" class="nav-link" data-scroll-target="#latihan-mandiri"><span class="header-section-number">11</span> Latihan Mandiri</a>
+  <li><a href="#studi-kasus-komprehensif-kepatuhan-baku-mutu-tss" id="toc-studi-kasus-komprehensif-kepatuhan-baku-mutu-tss" class="nav-link" data-scroll-target="#studi-kasus-komprehensif-kepatuhan-baku-mutu-tss"><span class="header-section-number">2.9</span> Studi Kasus Komprehensif: Kepatuhan Baku Mutu TSS</a>
   <ul class="collapse">
-  <li><a href="#latihan-utama-umur-baterai-ponsel" id="toc-latihan-utama-umur-baterai-ponsel" class="nav-link" data-scroll-target="#latihan-utama-umur-baterai-ponsel"><span class="header-section-number">11.1</span> Latihan Utama: Umur Baterai Ponsel</a>
+  <li><a href="#langkah-1-merumuskan-hipotesis-siapa-yang-menanggung-beban-pembuktian" id="toc-langkah-1-merumuskan-hipotesis-siapa-yang-menanggung-beban-pembuktian" class="nav-link" data-scroll-target="#langkah-1-merumuskan-hipotesis-siapa-yang-menanggung-beban-pembuktian"><span class="header-section-number">2.9.1</span> Langkah 1: Merumuskan Hipotesis – Siapa yang Menanggung Beban Pembuktian?</a></li>
+  <li><a href="#langkah-24-menjalankan-kedua-rumusan" id="toc-langkah-24-menjalankan-kedua-rumusan" class="nav-link" data-scroll-target="#langkah-24-menjalankan-kedua-rumusan"><span class="header-section-number">2.9.2</span> Langkah 2–4: Menjalankan Kedua Rumusan</a></li>
+  <li><a href="#langkah-5-konsekuensi-kesalahan" id="toc-langkah-5-konsekuensi-kesalahan" class="nav-link" data-scroll-target="#langkah-5-konsekuensi-kesalahan"><span class="header-section-number">2.9.3</span> Langkah 5: Konsekuensi Kesalahan</a></li>
+  <li><a href="#pertanyaan-diskusi-dan-jawaban" id="toc-pertanyaan-diskusi-dan-jawaban" class="nav-link" data-scroll-target="#pertanyaan-diskusi-dan-jawaban"><span class="header-section-number">2.9.4</span> Pertanyaan Diskusi dan Jawaban</a></li>
+  </ul></li>
+  <li><a href="#latihan-mandiri" id="toc-latihan-mandiri" class="nav-link" data-scroll-target="#latihan-mandiri"><span class="header-section-number">2.10</span> Latihan Mandiri</a>
   <ul class="collapse">
-  <li><a href="#tugas-1-rumuskan-hipotesis" id="toc-tugas-1-rumuskan-hipotesis" class="nav-link" data-scroll-target="#tugas-1-rumuskan-hipotesis"><span class="header-section-number">11.1.1</span> Tugas 1: Rumuskan hipotesis</a></li>
-  <li><a href="#tugas-2-hitung-statistik-uji-nilai-kritis-dan-p-value-alpha-005" id="toc-tugas-2-hitung-statistik-uji-nilai-kritis-dan-p-value-alpha-005" class="nav-link" data-scroll-target="#tugas-2-hitung-statistik-uji-nilai-kritis-dan-p-value-alpha-005"><span class="header-section-number">11.1.2</span> Tugas 2: Hitung statistik uji, nilai kritis, dan p-value (<span class="math inline">\(\alpha = 0{,}05\)</span>)</a></li>
-  <li><a href="#tugas-3-ambil-keputusan-dan-tuliskan-kesimpulan-dalam-konteks" id="toc-tugas-3-ambil-keputusan-dan-tuliskan-kesimpulan-dalam-konteks" class="nav-link" data-scroll-target="#tugas-3-ambil-keputusan-dan-tuliskan-kesimpulan-dalam-konteks"><span class="header-section-number">11.1.3</span> Tugas 3: Ambil keputusan dan tuliskan kesimpulan dalam konteks</a></li>
-  <li><a href="#tugas-4-bagaimana-keputusannya-jika-alpha-001" id="toc-tugas-4-bagaimana-keputusannya-jika-alpha-001" class="nav-link" data-scroll-target="#tugas-4-bagaimana-keputusannya-jika-alpha-001"><span class="header-section-number">11.1.4</span> Tugas 4: Bagaimana keputusannya jika <span class="math inline">\(\alpha = 0{,}01\)</span>?</a></li>
-  <li><a href="#tugas-5-jelaskan-kesalahan-tipe-i-dan-ii-dalam-konteks-ini" id="toc-tugas-5-jelaskan-kesalahan-tipe-i-dan-ii-dalam-konteks-ini" class="nav-link" data-scroll-target="#tugas-5-jelaskan-kesalahan-tipe-i-dan-ii-dalam-konteks-ini"><span class="header-section-number">11.1.5</span> Tugas 5: Jelaskan kesalahan Tipe I dan II dalam konteks ini</a></li>
-  <li><a href="#tugas-6-tantangan-power-dan-ukuran-sampel" id="toc-tugas-6-tantangan-power-dan-ukuran-sampel" class="nav-link" data-scroll-target="#tugas-6-tantangan-power-dan-ukuran-sampel"><span class="header-section-number">11.1.6</span> Tugas 6 (Tantangan): Power dan ukuran sampel</a></li>
+  <li><a href="#latihan-utama-umur-baterai-ponsel" id="toc-latihan-utama-umur-baterai-ponsel" class="nav-link" data-scroll-target="#latihan-utama-umur-baterai-ponsel"><span class="header-section-number">2.10.1</span> Latihan Utama: Umur Baterai Ponsel</a></li>
+  <li><a href="#latihan-tambahan-self-check" id="toc-latihan-tambahan-self-check" class="nav-link" data-scroll-target="#latihan-tambahan-self-check"><span class="header-section-number">2.10.2</span> Latihan Tambahan (Self-Check)</a></li>
   </ul></li>
-  <li><a href="#latihan-tambahan-self-check" id="toc-latihan-tambahan-self-check" class="nav-link" data-scroll-target="#latihan-tambahan-self-check"><span class="header-section-number">11.2</span> Latihan Tambahan (Self-Check)</a></li>
-  </ul></li>
-  <li><a href="#kesalahan-umum-dalam-uji-hipotesis" id="toc-kesalahan-umum-dalam-uji-hipotesis" class="nav-link" data-scroll-target="#kesalahan-umum-dalam-uji-hipotesis"><span class="header-section-number">12</span> Kesalahan Umum dalam Uji Hipotesis</a></li>
-  <li><a href="#cheat-sheet-fungsi-r-yang-digunakan" id="toc-cheat-sheet-fungsi-r-yang-digunakan" class="nav-link" data-scroll-target="#cheat-sheet-fungsi-r-yang-digunakan"><span class="header-section-number">13</span> Cheat Sheet: Fungsi R yang Digunakan</a></li>
-  <li><a href="#glosarium-istilah" id="toc-glosarium-istilah" class="nav-link" data-scroll-target="#glosarium-istilah"><span class="header-section-number">14</span> Glosarium Istilah</a></li>
-  <li><a href="#rangkuman-dan-kesimpulan" id="toc-rangkuman-dan-kesimpulan" class="nav-link" data-scroll-target="#rangkuman-dan-kesimpulan"><span class="header-section-number">15</span> Rangkuman dan Kesimpulan</a></li>
-  <li><a href="#referensi-pendukung" id="toc-referensi-pendukung" class="nav-link" data-scroll-target="#referensi-pendukung"><span class="header-section-number">16</span> Referensi Pendukung</a></li>
+  <li><a href="#kesalahan-umum-dalam-uji-hipotesis" id="toc-kesalahan-umum-dalam-uji-hipotesis" class="nav-link" data-scroll-target="#kesalahan-umum-dalam-uji-hipotesis"><span class="header-section-number">2.11</span> Kesalahan Umum dalam Uji Hipotesis</a></li>
+  <li><a href="#cheat-sheet-fungsi-r-yang-digunakan" id="toc-cheat-sheet-fungsi-r-yang-digunakan" class="nav-link" data-scroll-target="#cheat-sheet-fungsi-r-yang-digunakan"><span class="header-section-number">2.12</span> Cheat Sheet: Fungsi R yang Digunakan</a></li>
+  <li><a href="#glosarium-istilah" id="toc-glosarium-istilah" class="nav-link" data-scroll-target="#glosarium-istilah"><span class="header-section-number">2.13</span> Glosarium Istilah</a></li>
+  <li><a href="#rangkuman-dan-kesimpulan" id="toc-rangkuman-dan-kesimpulan" class="nav-link" data-scroll-target="#rangkuman-dan-kesimpulan"><span class="header-section-number">2.14</span> Rangkuman dan Kesimpulan</a></li>
+  <li><a href="#referensi-pendukung" id="toc-referensi-pendukung" class="nav-link" data-scroll-target="#referensi-pendukung"><span class="header-section-number">2.15</span> Referensi Pendukung</a></li>
+  <li><a href="#interpretasi" id="toc-interpretasi" class="nav-link" data-scroll-target="#interpretasi"><span class="header-section-number">2.16</span> Interpretasi</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/pakardata1/ebook-template-quarto.git/edit/main/chapters/bab-2.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/pakardata1/ebook-template-quarto.git/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan isu</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/orizasyatifa/template_repository.git/edit/main/chapters/bab-2.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/orizasyatifa/template_repository.git/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan isu</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pendahuluan</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Distribusi Sampling</span></h1>
 </div>
 
 
@@ -316,11 +312,13 @@ window.Quarto = {
 </header>
 
 
+<section id="pendahuluan" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="pendahuluan"><span class="header-section-number">2.1</span> Pendahuluan</h2>
 <p><strong>Program Studi:</strong> Data Science <strong>Konteks Sesi:</strong> Pertemuan 10 – Konsep dan Uji Hipotesis</p>
 <p>Dalam sidang pengadilan berlaku asas praduga tak bersalah: terdakwa dianggap tidak bersalah sampai jaksa menghadirkan bukti yang cukup kuat untuk meyakinkan hakim sebaliknya. Jika bukti kurang kuat, putusannya adalah “tidak terbukti bersalah” – bukan “terbukti tidak bersalah”. Hakim juga bisa keliru: menghukum orang yang tidak bersalah, atau membebaskan orang yang bersalah.</p>
 <p>Uji hipotesis bekerja dengan logika yang persis sama. Kita memulai dengan asumsi “tidak ada efek/perbedaan” (<span class="math inline">\(H_0\)</span>), lalu bertanya: jika asumsi itu benar, seberapa mengejutkan data yang kita peroleh? Jika sangat mengejutkan, kita menolak asumsi tersebut. Pertemuan ini membangun kerangka konsepnya; Pertemuan 11–14 menerapkannya pada berbagai uji.</p>
-<section id="tujuan-pembelajaran" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="tujuan-pembelajaran"><span class="header-section-number">2.1</span> Tujuan Pembelajaran</h2>
+<section id="tujuan-pembelajaran" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="tujuan-pembelajaran"><span class="header-section-number">2.1.1</span> Tujuan Pembelajaran</h3>
 <p>Setelah menyelesaikan praktikum ini, mahasiswa mampu:</p>
 <ol type="1">
 <li>Merumuskan hipotesis nol (<span class="math inline">\(H_0\)</span>) dan hipotesis alternatif (<span class="math inline">\(H_1\)</span>), baik dua arah maupun satu arah.</li>
@@ -331,8 +329,8 @@ window.Quarto = {
 <li>Membedakan signifikansi statistik dan signifikansi praktis, serta mengenali penyalahgunaan p-value.</li>
 </ol>
 </section>
-<section id="peta-alur-belajar" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="peta-alur-belajar"><span class="header-section-number">2.2</span> Peta Alur Belajar</h2>
+<section id="peta-alur-belajar" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="peta-alur-belajar"><span class="header-section-number">2.1.2</span> Peta Alur Belajar</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -396,8 +394,9 @@ window.Quarto = {
 </table>
 <p>Praktikum ini hanya menggunakan base R (kecuali <code>knitr::kable()</code> untuk menampilkan tabel; paket ini sudah terpasang bersama Quarto/RStudio).</p>
 </section>
-<section id="logika-uji-hipotesis" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Logika Uji Hipotesis</h1>
+</section>
+<section id="logika-uji-hipotesis" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="logika-uji-hipotesis"><span class="header-section-number">2.2</span> Logika Uji Hipotesis</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -444,8 +443,8 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<section id="ilustrasi-apakah-mesin-pengisi-masih-tepat" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="ilustrasi-apakah-mesin-pengisi-masih-tepat"><span class="header-section-number">3.1</span> Ilustrasi: Apakah Mesin Pengisi Masih Tepat?</h2>
+<section id="ilustrasi-apakah-mesin-pengisi-masih-tepat" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="ilustrasi-apakah-mesin-pengisi-masih-tepat"><span class="header-section-number">2.2.1</span> Ilustrasi: Apakah Mesin Pengisi Masih Tepat?</h3>
 <p>Melanjutkan latihan Pertemuan 9: mesin kopi bubuk seharusnya mengisi rata-rata 250 gram dengan <span class="math inline">\(\sigma = 6\)</span> gram. Sampel 36 kemasan menghasilkan <span class="math inline">\(\bar{x} = 247{,}6\)</span> gram. Apakah mesin perlu dikalibrasi, atau selisih 2,4 gram itu sekadar kebetulan sampling?</p>
 <p>Jika mesin benar (<span class="math inline">\(\mu = 250\)</span>), maka menurut CLT <span class="math inline">\(\bar{X} \sim N(250,\ 6/\sqrt{36} = 1)\)</span>. Kita lihat seberapa “jauh” 247,6 dari distribusi tersebut:</p>
 <div class="cell">
@@ -478,10 +477,10 @@ window.Quarto = {
 <p>Jika mesin benar, rata-rata yang meleset 2,4 gram atau lebih (ke arah mana pun) hanya terjadi sekitar 1.6% dari waktu. Angka inilah yang disebut <strong>p-value</strong>. Karena sangat jarang, kita punya alasan kuat untuk meragukan bahwa mesin bekerja benar.</p>
 </section>
 </section>
-<section id="merumuskan-hipotesis" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Merumuskan Hipotesis</h1>
-<section id="hipotesis-nol-dan-alternatif" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="hipotesis-nol-dan-alternatif"><span class="header-section-number">4.1</span> Hipotesis Nol dan Alternatif</h2>
+<section id="merumuskan-hipotesis" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="merumuskan-hipotesis"><span class="header-section-number">2.3</span> Merumuskan Hipotesis</h2>
+<section id="hipotesis-nol-dan-alternatif" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="hipotesis-nol-dan-alternatif"><span class="header-section-number">2.3.1</span> Hipotesis Nol dan Alternatif</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -527,8 +526,8 @@ Penting
 </div>
 </div>
 </section>
-<section id="tiga-bentuk-hipotesis" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="tiga-bentuk-hipotesis"><span class="header-section-number">4.2</span> Tiga Bentuk Hipotesis</h2>
+<section id="tiga-bentuk-hipotesis" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="tiga-bentuk-hipotesis"><span class="header-section-number">2.3.2</span> Tiga Bentuk Hipotesis</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -571,8 +570,8 @@ Penting
 </tbody>
 </table>
 </section>
-<section id="menerjemahkan-kalimat-menjadi-hipotesis" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="menerjemahkan-kalimat-menjadi-hipotesis"><span class="header-section-number">4.3</span> Menerjemahkan Kalimat Menjadi Hipotesis</h2>
+<section id="menerjemahkan-kalimat-menjadi-hipotesis" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="menerjemahkan-kalimat-menjadi-hipotesis"><span class="header-section-number">2.3.3</span> Menerjemahkan Kalimat Menjadi Hipotesis</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -610,14 +609,14 @@ Peringatan
 </div>
 </section>
 </section>
-<section id="komponen-uji-hipotesis" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Komponen Uji Hipotesis</h1>
-<section id="tingkat-signifikansi-alpha" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="tingkat-signifikansi-alpha"><span class="header-section-number">5.1</span> Tingkat Signifikansi (<span class="math inline">\(\alpha\)</span>)</h2>
+<section id="komponen-uji-hipotesis" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="komponen-uji-hipotesis"><span class="header-section-number">2.4</span> Komponen Uji Hipotesis</h2>
+<section id="tingkat-signifikansi-alpha" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="tingkat-signifikansi-alpha"><span class="header-section-number">2.4.1</span> Tingkat Signifikansi (<span class="math inline">\(\alpha\)</span>)</h3>
 <p><span class="math inline">\(\alpha\)</span> adalah batas peluang kesalahan Tipe I yang bersedia kita tanggung – peluang menolak <span class="math inline">\(H_0\)</span> padahal <span class="math inline">\(H_0\)</span> benar. Nilai yang umum: 0,05; 0,01; atau 0,10. <span class="math inline">\(\alpha\)</span> ditetapkan <strong>sebelum</strong> data dianalisis, berdasarkan seberapa mahal akibat kesalahan Tipe I.</p>
 </section>
-<section id="statistik-uji" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="statistik-uji"><span class="header-section-number">5.2</span> Statistik Uji</h2>
+<section id="statistik-uji" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="statistik-uji"><span class="header-section-number">2.4.2</span> Statistik Uji</h3>
 <p>Statistik uji mengukur seberapa jauh estimasi sampel dari nilai <span class="math inline">\(H_0\)</span>, dalam satuan standard error:</p>
 <p><span class="math display">\[
 \text{statistik uji} = \frac{\text{estimasi} - \text{nilai di } H_0}{\text{SE}}
@@ -633,8 +632,8 @@ z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}
 </div>
 <p>Rata-rata sampel berada 2.4 standard error di bawah nilai yang diklaim.</p>
 </section>
-<section id="nilai-kritis-dan-daerah-penolakan" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="nilai-kritis-dan-daerah-penolakan"><span class="header-section-number">5.3</span> Nilai Kritis dan Daerah Penolakan</h2>
+<section id="nilai-kritis-dan-daerah-penolakan" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="nilai-kritis-dan-daerah-penolakan"><span class="header-section-number">2.4.3</span> Nilai Kritis dan Daerah Penolakan</h3>
 <p>Nilai kritis adalah batas yang memisahkan daerah “tidak mengejutkan” dan daerah penolakan, ditentukan oleh <span class="math inline">\(\alpha\)</span> dan arah uji.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
@@ -674,8 +673,8 @@ z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}
 </div>
 <p>Daerah merah adalah daerah penolakan, luasnya <span class="math inline">\(\alpha = 0{,}05\)</span>. Pada uji dua arah, <span class="math inline">\(\alpha\)</span> dibagi dua ke kedua ekor.</p>
 </section>
-<section id="p-value" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="p-value"><span class="header-section-number">5.4</span> P-Value</h2>
+<section id="p-value" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="p-value"><span class="header-section-number">2.4.4</span> P-Value</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -738,8 +737,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="keputusan-dua-pendekatan-yang-setara" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="keputusan-dua-pendekatan-yang-setara"><span class="header-section-number">5.5</span> Keputusan: Dua Pendekatan yang Setara</h2>
+<section id="keputusan-dua-pendekatan-yang-setara" class="level3" data-number="2.4.5">
+<h3 data-number="2.4.5" class="anchored" data-anchor-id="keputusan-dua-pendekatan-yang-setara"><span class="header-section-number">2.4.5</span> Keputusan: Dua Pendekatan yang Setara</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -808,8 +807,8 @@ Peringatan
 </div>
 </section>
 </section>
-<section id="prosedur-lima-langkah" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Prosedur Lima Langkah</h1>
+<section id="prosedur-lima-langkah" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="prosedur-lima-langkah"><span class="header-section-number">2.5</span> Prosedur Lima Langkah</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 57%">
@@ -863,8 +862,8 @@ Peringatan
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">keputusan =</span> <span class="fu">ifelse</span>(p <span class="sc">&lt;=</span> alpha, <span class="st">"Tolak H0"</span>, <span class="st">"Gagal menolak H0"</span>))</span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="contoh-1-dua-arah-mesin-pengisi-kopi" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="contoh-1-dua-arah-mesin-pengisi-kopi"><span class="header-section-number">6.1</span> Contoh 1 (Dua Arah): Mesin Pengisi Kopi</h2>
+<section id="contoh-1-dua-arah-mesin-pengisi-kopi" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="contoh-1-dua-arah-mesin-pengisi-kopi"><span class="header-section-number">2.5.1</span> Contoh 1 (Dua Arah): Mesin Pengisi Kopi</h3>
 <ol type="1">
 <li><span class="math inline">\(H_0: \mu = 250\)</span> gram (mesin tepat); <span class="math inline">\(H_1: \mu \ne 250\)</span> gram (mesin perlu dikalibrasi).</li>
 <li><span class="math inline">\(\alpha = 0{,}05\)</span>.</li>
@@ -882,8 +881,8 @@ Peringatan
 <li><strong>Kesimpulan:</strong> pada taraf signifikansi 5%, terdapat bukti yang cukup bahwa rata-rata pengisian mesin berbeda dari 250 gram (data menunjukkan cenderung kurang). Mesin sebaiknya diperiksa dan dikalibrasi.</li>
 </ol>
 </section>
-<section id="contoh-2-satu-arah-kanan-klaim-waktu-pengiriman" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="contoh-2-satu-arah-kanan-klaim-waktu-pengiriman"><span class="header-section-number">6.2</span> Contoh 2 (Satu Arah Kanan): Klaim Waktu Pengiriman</h2>
+<section id="contoh-2-satu-arah-kanan-klaim-waktu-pengiriman" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="contoh-2-satu-arah-kanan-klaim-waktu-pengiriman"><span class="header-section-number">2.5.2</span> Contoh 2 (Satu Arah Kanan): Klaim Waktu Pengiriman</h3>
 <p>Sebuah layanan logistik mengklaim rata-rata waktu pengirimannya paling lama 48 jam. Asosiasi konsumen curiga waktunya lebih lama. Data historis menunjukkan <span class="math inline">\(\sigma = 10\)</span> jam. Sampel 50 pengiriman menghasilkan <span class="math inline">\(\bar{x} = 50{,}1\)</span> jam.</p>
 <ol type="1">
 <li><span class="math inline">\(H_0: \mu \le 48\)</span> (klaim benar); <span class="math inline">\(H_1: \mu &gt; 48\)</span> (klaim tidak benar – lebih lama).</li>
@@ -900,8 +899,8 @@ Peringatan
 <p>Perhatikan: jika asosiasi konsumen memakai uji dua arah, p-value-nya menjadi dua kali lipat (sekitar 0,14). Arah uji harus ditentukan dari pertanyaan penelitian <strong>sebelum</strong> melihat data.</p>
 </section>
 </section>
-<section id="hubungan-uji-dua-arah-dan-selang-kepercayaan" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Hubungan Uji Dua Arah dan Selang Kepercayaan</h1>
+<section id="hubungan-uji-dua-arah-dan-selang-kepercayaan" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="hubungan-uji-dua-arah-dan-selang-kepercayaan"><span class="header-section-number">2.6</span> Hubungan Uji Dua Arah dan Selang Kepercayaan</h2>
 <p>Uji dua arah dengan taraf <span class="math inline">\(\alpha\)</span> setara dengan memeriksa apakah <span class="math inline">\(\mu_0\)</span> berada di dalam selang kepercayaan <span class="math inline">\((1-\alpha) \times 100\%\)</span>:</p>
 <ul>
 <li><span class="math inline">\(\mu_0\)</span> di luar CI 95% <span class="math inline">\(\iff\)</span> tolak <span class="math inline">\(H_0\)</span> pada <span class="math inline">\(\alpha = 0{,}05\)</span> (dua arah).</li>
@@ -923,10 +922,10 @@ Peringatan
 </div>
 <p>Selang kepercayaan lebih informatif: selain keputusan, ia menunjukkan rentang nilai <span class="math inline">\(\mu\)</span> yang masuk akal – di sini rata-rata pengisian kemungkinan antara 245.6 dan 249.6 gram, sehingga kekurangannya kemungkinan antara 0.4 dan 4.4 gram per kemasan.</p>
 </section>
-<section id="kesalahan-tipe-i-tipe-ii-dan-power" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Kesalahan Tipe I, Tipe II, dan Power</h1>
-<section id="tabel-keputusan" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="tabel-keputusan"><span class="header-section-number">8.1</span> Tabel Keputusan</h2>
+<section id="kesalahan-tipe-i-tipe-ii-dan-power" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="kesalahan-tipe-i-tipe-ii-dan-power"><span class="header-section-number">2.7</span> Kesalahan Tipe I, Tipe II, dan Power</h2>
+<section id="tabel-keputusan" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="tabel-keputusan"><span class="header-section-number">2.7.1</span> Tabel Keputusan</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -990,8 +989,8 @@ Peringatan
 </tbody>
 </table>
 </section>
-<section id="simulasi-kesalahan-tipe-i-terjadi-sekitar-alpha-dari-waktu" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="simulasi-kesalahan-tipe-i-terjadi-sekitar-alpha-dari-waktu"><span class="header-section-number">8.2</span> Simulasi: Kesalahan Tipe I Terjadi Sekitar <span class="math inline">\(\alpha\)</span> dari Waktu</h2>
+<section id="simulasi-kesalahan-tipe-i-terjadi-sekitar-alpha-dari-waktu" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="simulasi-kesalahan-tipe-i-terjadi-sekitar-alpha-dari-waktu"><span class="header-section-number">2.7.2</span> Simulasi: Kesalahan Tipe I Terjadi Sekitar <span class="math inline">\(\alpha\)</span> dari Waktu</h3>
 <p>Jika mesin benar-benar tepat (<span class="math inline">\(\mu = 250\)</span>) dan kita menguji 10.000 sampel berbeda, berapa kali kita keliru menolak <span class="math inline">\(H_0\)</span>?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
@@ -1020,8 +1019,8 @@ Peringatan
 </div>
 <p>Ketika <span class="math inline">\(H_0\)</span> benar, p-value tersebar merata antara 0 dan 1; sekitar 5% di antaranya jatuh di bawah 0,05 murni karena kebetulan. Itulah makna <span class="math inline">\(\alpha\)</span>.</p>
 </section>
-<section id="simulasi-kesalahan-tipe-ii-dan-power" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="simulasi-kesalahan-tipe-ii-dan-power"><span class="header-section-number">8.3</span> Simulasi: Kesalahan Tipe II dan Power</h2>
+<section id="simulasi-kesalahan-tipe-ii-dan-power" class="level3" data-number="2.7.3">
+<h3 data-number="2.7.3" class="anchored" data-anchor-id="simulasi-kesalahan-tipe-ii-dan-power"><span class="header-section-number">2.7.3</span> Simulasi: Kesalahan Tipe II dan Power</h3>
 <p>Sekarang anggap mesin benar-benar mengisi rata-rata 248 gram (<span class="math inline">\(H_0\)</span> salah). Seberapa sering uji kita mendeteksinya?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>power_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(mu_benar, n, <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">B =</span> <span class="dv">5000</span>) {</span>
@@ -1048,8 +1047,8 @@ Peringatan
 </div>
 <p>Dengan <span class="math inline">\(n = 36\)</span>, uji hanya mendeteksi selisih 2 gram sekitar 52% dari waktu; sekitar 48% dari waktu mesin yang salah setel lolos (kesalahan Tipe II).</p>
 </section>
-<section id="kurva-power-faktor-yang-memengaruhinya" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="kurva-power-faktor-yang-memengaruhinya"><span class="header-section-number">8.4</span> Kurva Power: Faktor yang Memengaruhinya</h2>
+<section id="kurva-power-faktor-yang-memengaruhinya" class="level3" data-number="2.7.4">
+<h3 data-number="2.7.4" class="anchored" data-anchor-id="kurva-power-faktor-yang-memengaruhinya"><span class="header-section-number">2.7.4</span> Kurva Power: Faktor yang Memengaruhinya</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>mu_seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">245</span>, <span class="dv">255</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mu_seq, <span class="fu">power_teori</span>(mu_seq, <span class="dv">36</span>), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"#4C72B0"</span>,</span>
@@ -1123,10 +1122,10 @@ Peringatan
 </div>
 </section>
 </section>
-<section id="menafsirkan-hasil-uji-dengan-bijak" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Menafsirkan Hasil Uji dengan Bijak</h1>
-<section id="signifikansi-statistik-vs-signifikansi-praktis" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="signifikansi-statistik-vs-signifikansi-praktis"><span class="header-section-number">9.1</span> Signifikansi Statistik vs Signifikansi Praktis</h2>
+<section id="menafsirkan-hasil-uji-dengan-bijak" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="menafsirkan-hasil-uji-dengan-bijak"><span class="header-section-number">2.8</span> Menafsirkan Hasil Uji dengan Bijak</h2>
+<section id="signifikansi-statistik-vs-signifikansi-praktis" class="level3" data-number="2.8.1">
+<h3 data-number="2.8.1" class="anchored" data-anchor-id="signifikansi-statistik-vs-signifikansi-praktis"><span class="header-section-number">2.8.1</span> Signifikansi Statistik vs Signifikansi Praktis</h3>
 <p>Dengan sampel sangat besar, selisih yang sangat kecil pun menjadi “signifikan secara statistik”.</p>
 <div class="cell" data-tbl-cap="Selisih 0,2 gram: tidak signifikan vs sangat signifikan">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">rbind</span>(</span>
@@ -1166,8 +1165,8 @@ Peringatan
 </div>
 <p>Selisih 0,2 gram per kemasan (0,08%) kemungkinan tidak penting secara praktis, meskipun signifikan secara statistik pada <span class="math inline">\(n = 100.000\)</span>. Karena itu, selalu laporkan <strong>besar efek</strong> (selisih dan selang kepercayaannya), bukan hanya p-value.</p>
 </section>
-<section id="miskonsepsi-tentang-p-value" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="miskonsepsi-tentang-p-value"><span class="header-section-number">9.2</span> Miskonsepsi tentang P-Value</h2>
+<section id="miskonsepsi-tentang-p-value" class="level3" data-number="2.8.2">
+<h3 data-number="2.8.2" class="anchored" data-anchor-id="miskonsepsi-tentang-p-value"><span class="header-section-number">2.8.2</span> Miskonsepsi tentang P-Value</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 30%">
@@ -1215,8 +1214,8 @@ Peringatan
 </tbody>
 </table>
 </section>
-<section id="bahaya-uji-berganda-p-hacking" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="bahaya-uji-berganda-p-hacking"><span class="header-section-number">9.3</span> Bahaya Uji Berganda (P-Hacking)</h2>
+<section id="bahaya-uji-berganda-p-hacking" class="level3" data-number="2.8.3">
+<h3 data-number="2.8.3" class="anchored" data-anchor-id="bahaya-uji-berganda-p-hacking"><span class="header-section-number">2.8.3</span> Bahaya Uji Berganda (P-Hacking)</h3>
 <p>Jika kita menguji banyak hipotesis sekaligus – atau mencoba banyak cara analisis sampai ada yang “signifikan” – peluang setidaknya satu kesalahan Tipe I melonjak.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">50</span>)</span>
@@ -1256,8 +1255,8 @@ Peringatan
 </div>
 </section>
 </section>
-<section id="studi-kasus-komprehensif-kepatuhan-baku-mutu-tss" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Studi Kasus Komprehensif: Kepatuhan Baku Mutu TSS</h1>
+<section id="studi-kasus-komprehensif-kepatuhan-baku-mutu-tss" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="studi-kasus-komprehensif-kepatuhan-baku-mutu-tss"><span class="header-section-number">2.9</span> Studi Kasus Komprehensif: Kepatuhan Baku Mutu TSS</h2>
 <p><strong>Konteks:</strong> Sebuah perusahaan membuang air olahan ke sungai dengan baku mutu TSS (misalnya) 50 mg/L untuk rata-rata bulanan. Regulator mengambil 30 sampel acak dalam sebulan. Dari pemantauan panjang, simpangan baku pengukuran diketahui <span class="math inline">\(\sigma = 12\)</span> mg/L.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
@@ -1268,8 +1267,8 @@ Peringatan
  30.00  53.13  13.15  52.50 </code></pre>
 </div>
 </div>
-<section id="langkah-1-merumuskan-hipotesis-siapa-yang-menanggung-beban-pembuktian" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="langkah-1-merumuskan-hipotesis-siapa-yang-menanggung-beban-pembuktian"><span class="header-section-number">10.1</span> Langkah 1: Merumuskan Hipotesis – Siapa yang Menanggung Beban Pembuktian?</h2>
+<section id="langkah-1-merumuskan-hipotesis-siapa-yang-menanggung-beban-pembuktian" class="level3" data-number="2.9.1">
+<h3 data-number="2.9.1" class="anchored" data-anchor-id="langkah-1-merumuskan-hipotesis-siapa-yang-menanggung-beban-pembuktian"><span class="header-section-number">2.9.1</span> Langkah 1: Merumuskan Hipotesis – Siapa yang Menanggung Beban Pembuktian?</h3>
 <p>Ada dua cara merumuskan hipotesis, dan pilihannya bukan sekadar teknis:</p>
 <table class="caption-top table">
 <colgroup>
@@ -1302,8 +1301,8 @@ Peringatan
 </tbody>
 </table>
 </section>
-<section id="langkah-24-menjalankan-kedua-rumusan" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="langkah-24-menjalankan-kedua-rumusan"><span class="header-section-number">10.2</span> Langkah 2–4: Menjalankan Kedua Rumusan</h2>
+<section id="langkah-24-menjalankan-kedua-rumusan" class="level3" data-number="2.9.2">
+<h3 data-number="2.9.2" class="anchored" data-anchor-id="langkah-24-menjalankan-kedua-rumusan"><span class="header-section-number">2.9.2</span> Langkah 2–4: Menjalankan Kedua Rumusan</h3>
 <div class="cell" data-tbl-cap="Data yang sama, dua rumusan hipotesis">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>hasil_tss <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"A: H1 mu &gt; 50 (melanggar)"</span> <span class="ot">=</span> <span class="fu">uji_z</span>(<span class="fu">mean</span>(tss), <span class="dv">50</span>, <span class="at">sigma =</span> <span class="dv">12</span>, <span class="at">n =</span> <span class="dv">30</span>, <span class="at">arah =</span> <span class="st">"kanan"</span>),</span>
@@ -1349,8 +1348,8 @@ Peringatan
 </div>
 </div>
 </section>
-<section id="langkah-5-konsekuensi-kesalahan" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="langkah-5-konsekuensi-kesalahan"><span class="header-section-number">10.3</span> Langkah 5: Konsekuensi Kesalahan</h2>
+<section id="langkah-5-konsekuensi-kesalahan" class="level3" data-number="2.9.3">
+<h3 data-number="2.9.3" class="anchored" data-anchor-id="langkah-5-konsekuensi-kesalahan"><span class="header-section-number">2.9.3</span> Langkah 5: Konsekuensi Kesalahan</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -1392,8 +1391,8 @@ Peringatan
 </div>
 </div>
 </section>
-<section id="pertanyaan-diskusi-dan-jawaban" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="pertanyaan-diskusi-dan-jawaban"><span class="header-section-number">10.4</span> Pertanyaan Diskusi dan Jawaban</h2>
+<section id="pertanyaan-diskusi-dan-jawaban" class="level3" data-number="2.9.4">
+<h3 data-number="2.9.4" class="anchored" data-anchor-id="pertanyaan-diskusi-dan-jawaban"><span class="header-section-number">2.9.4</span> Pertanyaan Diskusi dan Jawaban</h3>
 <ol type="1">
 <li><p><strong>Apa kesimpulan rumusan A?</strong></p>
 <p>P-value = 0.0766. Pada taraf 5% bukti belum cukup untuk menyatakan rata-rata TSS melebihi 50 mg/L, meskipun rata-rata sampel di atas baku mutu.</p></li>
@@ -1406,10 +1405,10 @@ Peringatan
 </ol>
 </section>
 </section>
-<section id="latihan-mandiri" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Latihan Mandiri</h1>
-<section id="latihan-utama-umur-baterai-ponsel" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="latihan-utama-umur-baterai-ponsel"><span class="header-section-number">11.1</span> Latihan Utama: Umur Baterai Ponsel</h2>
+<section id="latihan-mandiri" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="latihan-mandiri"><span class="header-section-number">2.10</span> Latihan Mandiri</h2>
+<section id="latihan-utama-umur-baterai-ponsel" class="level3" data-number="2.10.1">
+<h3 data-number="2.10.1" class="anchored" data-anchor-id="latihan-utama-umur-baterai-ponsel"><span class="header-section-number">2.10.1</span> Latihan Utama: Umur Baterai Ponsel</h3>
 <p><strong>Konteks:</strong> Produsen mengklaim baterai ponselnya bertahan rata-rata 20 jam pemakaian normal. Lembaga konsumen menguji 40 unit. Dari spesifikasi pengujian standar, <span class="math inline">\(\sigma = 2{,}5\)</span> jam.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
@@ -1420,13 +1419,13 @@ Peringatan
 40.000 19.160  2.086 </code></pre>
 </div>
 </div>
-<section id="tugas-1-rumuskan-hipotesis" class="level3" data-number="11.1.1">
-<h3 data-number="11.1.1" class="anchored" data-anchor-id="tugas-1-rumuskan-hipotesis"><span class="header-section-number">11.1.1</span> Tugas 1: Rumuskan hipotesis</h3>
+<section id="tugas-1-rumuskan-hipotesis" class="level4">
+<h4 class="anchored" data-anchor-id="tugas-1-rumuskan-hipotesis">Tugas 1: Rumuskan hipotesis</h4>
 <p>Lembaga konsumen curiga umur baterai kurang dari yang diklaim.</p>
 <p><strong>Jawaban:</strong> <span class="math inline">\(H_0: \mu \ge 20\)</span> jam (klaim benar); <span class="math inline">\(H_1: \mu &lt; 20\)</span> jam (klaim berlebihan). Uji satu arah kiri.</p>
 </section>
-<section id="tugas-2-hitung-statistik-uji-nilai-kritis-dan-p-value-alpha-005" class="level3" data-number="11.1.2">
-<h3 data-number="11.1.2" class="anchored" data-anchor-id="tugas-2-hitung-statistik-uji-nilai-kritis-dan-p-value-alpha-005"><span class="header-section-number">11.1.2</span> Tugas 2: Hitung statistik uji, nilai kritis, dan p-value (<span class="math inline">\(\alpha = 0{,}05\)</span>)</h3>
+<section id="tugas-2-hitung-statistik-uji-nilai-kritis-dan-p-value-alpha-005" class="level4">
+<h4 class="anchored" data-anchor-id="tugas-2-hitung-statistik-uji-nilai-kritis-dan-p-value-alpha-005">Tugas 2: Hitung statistik uji, nilai kritis, dan p-value (<span class="math inline">\(\alpha = 0{,}05\)</span>)</h4>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>hasil_lat <span class="ot">&lt;-</span> <span class="fu">uji_z</span>(<span class="fu">mean</span>(umur), <span class="at">mu0 =</span> <span class="dv">20</span>, <span class="at">sigma =</span> <span class="fl">2.5</span>, <span class="at">n =</span> <span class="dv">40</span>, <span class="at">arah =</span> <span class="st">"kiri"</span>)</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>hasil_lat</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1436,12 +1435,12 @@ Peringatan
 </div>
 </div>
 </section>
-<section id="tugas-3-ambil-keputusan-dan-tuliskan-kesimpulan-dalam-konteks" class="level3" data-number="11.1.3">
-<h3 data-number="11.1.3" class="anchored" data-anchor-id="tugas-3-ambil-keputusan-dan-tuliskan-kesimpulan-dalam-konteks"><span class="header-section-number">11.1.3</span> Tugas 3: Ambil keputusan dan tuliskan kesimpulan dalam konteks</h3>
+<section id="tugas-3-ambil-keputusan-dan-tuliskan-kesimpulan-dalam-konteks" class="level4">
+<h4 class="anchored" data-anchor-id="tugas-3-ambil-keputusan-dan-tuliskan-kesimpulan-dalam-konteks">Tugas 3: Ambil keputusan dan tuliskan kesimpulan dalam konteks</h4>
 <p><strong>Jawaban:</strong> statistik uji <span class="math inline">\(z =\)</span> -2.1251 dengan p-value 0.01679. Karena p-value kurang dari 0,05, <span class="math inline">\(H_0\)</span> ditolak: terdapat bukti yang cukup bahwa rata-rata umur baterai kurang dari 20 jam seperti yang diklaim.</p>
 </section>
-<section id="tugas-4-bagaimana-keputusannya-jika-alpha-001" class="level3" data-number="11.1.4">
-<h3 data-number="11.1.4" class="anchored" data-anchor-id="tugas-4-bagaimana-keputusannya-jika-alpha-001"><span class="header-section-number">11.1.4</span> Tugas 4: Bagaimana keputusannya jika <span class="math inline">\(\alpha = 0{,}01\)</span>?</h3>
+<section id="tugas-4-bagaimana-keputusannya-jika-alpha-001" class="level4">
+<h4 class="anchored" data-anchor-id="tugas-4-bagaimana-keputusannya-jika-alpha-001">Tugas 4: Bagaimana keputusannya jika <span class="math inline">\(\alpha = 0{,}01\)</span>?</h4>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>hasil_lat01 <span class="ot">&lt;-</span> <span class="fu">uji_z</span>(<span class="fu">mean</span>(umur), <span class="at">mu0 =</span> <span class="dv">20</span>, <span class="at">sigma =</span> <span class="fl">2.5</span>, <span class="at">n =</span> <span class="dv">40</span>,</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">arah =</span> <span class="st">"kiri"</span>, <span class="at">alpha =</span> <span class="fl">0.01</span>)</span>
@@ -1453,12 +1452,12 @@ Peringatan
 </div>
 <p><strong>Jawaban:</strong> pada <span class="math inline">\(\alpha = 0{,}01\)</span> nilai kritisnya -2.326, sehingga keputusannya menjadi <strong>Gagal menolak H0</strong>. Keputusan dapat berubah menurut <span class="math inline">\(\alpha\)</span> – itulah sebabnya <span class="math inline">\(\alpha\)</span> harus ditetapkan sebelum melihat data, dan p-value sebaiknya dilaporkan apa adanya agar pembaca dapat menilai sendiri kekuatan buktinya.</p>
 </section>
-<section id="tugas-5-jelaskan-kesalahan-tipe-i-dan-ii-dalam-konteks-ini" class="level3" data-number="11.1.5">
-<h3 data-number="11.1.5" class="anchored" data-anchor-id="tugas-5-jelaskan-kesalahan-tipe-i-dan-ii-dalam-konteks-ini"><span class="header-section-number">11.1.5</span> Tugas 5: Jelaskan kesalahan Tipe I dan II dalam konteks ini</h3>
+<section id="tugas-5-jelaskan-kesalahan-tipe-i-dan-ii-dalam-konteks-ini" class="level4">
+<h4 class="anchored" data-anchor-id="tugas-5-jelaskan-kesalahan-tipe-i-dan-ii-dalam-konteks-ini">Tugas 5: Jelaskan kesalahan Tipe I dan II dalam konteks ini</h4>
 <p><strong>Jawaban:</strong> <strong>Tipe I</strong> – lembaga menyatakan klaim produsen berlebihan padahal baterai sebenarnya bertahan rata-rata 20 jam (merugikan reputasi produsen). <strong>Tipe II</strong> – lembaga menyatakan tidak ada bukti klaim berlebihan padahal baterai sebenarnya bertahan kurang dari 20 jam (merugikan konsumen).</p>
 </section>
-<section id="tugas-6-tantangan-power-dan-ukuran-sampel" class="level3" data-number="11.1.6">
-<h3 data-number="11.1.6" class="anchored" data-anchor-id="tugas-6-tantangan-power-dan-ukuran-sampel"><span class="header-section-number">11.1.6</span> Tugas 6 (Tantangan): Power dan ukuran sampel</h3>
+<section id="tugas-6-tantangan-power-dan-ukuran-sampel" class="level4">
+<h4 class="anchored" data-anchor-id="tugas-6-tantangan-power-dan-ukuran-sampel">Tugas 6 (Tantangan): Power dan ukuran sampel</h4>
 <p>Hitung power uji ini untuk mendeteksi umur sebenarnya 19 jam, lalu tentukan <span class="math inline">\(n\)</span> agar power-nya 90%.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>power_kiri <span class="ot">&lt;-</span> <span class="cf">function</span>(mu_benar, mu0, sigma, n, <span class="at">alpha =</span> <span class="fl">0.05</span>) {</span>
@@ -1470,7 +1469,7 @@ Peringatan
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.812</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># n satu arah, power 90%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="do">## n satu arah, power 90%</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>n_bat <span class="ot">&lt;-</span> <span class="fu">ceiling</span>(((<span class="fu">qnorm</span>(<span class="fl">0.95</span>) <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.90</span>)) <span class="sc">*</span> <span class="fl">2.5</span> <span class="sc">/</span> <span class="dv">1</span>)<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>n_bat</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1480,8 +1479,8 @@ Peringatan
 <p><strong>Jawaban:</strong> dengan 40 unit, selisih 1 jam terdeteksi sekitar 81% dari waktu. Untuk power 90% dibutuhkan sekitar 54 unit.</p>
 </section>
 </section>
-<section id="latihan-tambahan-self-check" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="latihan-tambahan-self-check"><span class="header-section-number">11.2</span> Latihan Tambahan (Self-Check)</h2>
+<section id="latihan-tambahan-self-check" class="level3" data-number="2.10.2">
+<h3 data-number="2.10.2" class="anchored" data-anchor-id="latihan-tambahan-self-check"><span class="header-section-number">2.10.2</span> Latihan Tambahan (Self-Check)</h3>
 <p>Kerjakan soal-soal berikut secara mandiri sebelum melihat kunci jawaban pada komentar kode.</p>
 <p><strong>Soal A.</strong> Tuliskan <span class="math inline">\(H_0\)</span> dan <span class="math inline">\(H_1\)</span>: (1) Apakah rata-rata waktu respons server berubah dari 200 ms setelah pembaruan? (2) Apakah pelatihan menaikkan rata-rata skor tes di atas 70? (3) Apakah rata-rata kadar gula minuman kurang dari 10 g seperti label?</p>
 <div class="cell">
@@ -1514,8 +1513,8 @@ Peringatan
 </div>
 </section>
 </section>
-<section id="kesalahan-umum-dalam-uji-hipotesis" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Kesalahan Umum dalam Uji Hipotesis</h1>
+<section id="kesalahan-umum-dalam-uji-hipotesis" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="kesalahan-umum-dalam-uji-hipotesis"><span class="header-section-number">2.11</span> Kesalahan Umum dalam Uji Hipotesis</h2>
 <ol type="1">
 <li>Menulis hipotesis tentang statistik sampel (<span class="math inline">\(H_0: \bar{x} = 250\)</span>) – hipotesis selalu tentang parameter.</li>
 <li>Menaruh kesamaan di <span class="math inline">\(H_1\)</span> – tanda <span class="math inline">\(=\)</span>, <span class="math inline">\(\le\)</span>, <span class="math inline">\(\ge\)</span> selalu berada di <span class="math inline">\(H_0\)</span>.</li>
@@ -1530,8 +1529,8 @@ Peringatan
 <li>Mengabaikan konsekuensi dunia nyata saat merumuskan <span class="math inline">\(H_0\)</span> – rumusan menentukan siapa yang diuntungkan oleh keraguan.</li>
 </ol>
 </section>
-<section id="cheat-sheet-fungsi-r-yang-digunakan" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Cheat Sheet: Fungsi R yang Digunakan</h1>
+<section id="cheat-sheet-fungsi-r-yang-digunakan" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="cheat-sheet-fungsi-r-yang-digunakan"><span class="header-section-number">2.12</span> Cheat Sheet: Fungsi R yang Digunakan</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -1591,8 +1590,8 @@ Peringatan
 </tbody>
 </table>
 </section>
-<section id="glosarium-istilah" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> Glosarium Istilah</h1>
+<section id="glosarium-istilah" class="level2" data-number="2.13">
+<h2 data-number="2.13" class="anchored" data-anchor-id="glosarium-istilah"><span class="header-section-number">2.13</span> Glosarium Istilah</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -1684,8 +1683,8 @@ Peringatan
 </tbody>
 </table>
 </section>
-<section id="rangkuman-dan-kesimpulan" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> Rangkuman dan Kesimpulan</h1>
+<section id="rangkuman-dan-kesimpulan" class="level2" data-number="2.14">
+<h2 data-number="2.14" class="anchored" data-anchor-id="rangkuman-dan-kesimpulan"><span class="header-section-number">2.14</span> Rangkuman dan Kesimpulan</h2>
 <ol type="1">
 <li>Logika uji hipotesis sama dengan pengadilan: asumsikan <span class="math inline">\(H_0\)</span> benar, lalu nilai seberapa mengejutkan data; tolak <span class="math inline">\(H_0\)</span> hanya jika bukti kuat.</li>
 <li>Hipotesis dinyatakan tentang parameter; <span class="math inline">\(H_0\)</span> selalu memuat kesamaan; arah uji ditentukan dari pertanyaan penelitian sebelum melihat data.</li>
@@ -1696,8 +1695,8 @@ Peringatan
 </ol>
 <p><strong>Jembatan ke sesi berikutnya:</strong> hari ini kita memakai uji z dengan <span class="math inline">\(\sigma\)</span> diketahui sebagai kendaraan untuk memahami konsep. Pertemuan 11 membahas situasi yang jauh lebih sering dijumpai – <span class="math inline">\(\sigma\)</span> tidak diketahui – dengan uji t satu sampel, dua sampel independen, dan berpasangan, beserta uji z dua sampel.</p>
 </section>
-<section id="referensi-pendukung" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> Referensi Pendukung</h1>
+<section id="referensi-pendukung" class="level2" data-number="2.15">
+<h2 data-number="2.15" class="anchored" data-anchor-id="referensi-pendukung"><span class="header-section-number">2.15</span> Referensi Pendukung</h2>
 <p>Materi ini merangkum konsep dasar uji hipotesis (<em>fundamentals of hypothesis testing</em>) yang umum dibahas pada buku teks pengantar statistika bisnis/data science. Mahasiswa disarankan melengkapi pemahaman dengan merujuk pada:</p>
 <ul>
 <li>Modul/slide perkuliahan “Introduction to Statistics (SDT-1102)” – Pertemuan 10: Konsep dan Uji Hipotesis.</li>
@@ -1705,6 +1704,21 @@ Peringatan
 <li>Buku teks pengantar statistika pada bab <em>Fundamentals of Hypothesis Testing: One-Sample Tests</em>.</li>
 <li>Dokumentasi resmi R: <code>?pnorm</code>, <code>?qnorm</code>, <code>?p.adjust</code>, <code>?polygon</code> (dapat diakses langsung di R/RStudio).</li>
 </ul>
+</section>
+<section id="interpretasi" class="level2" data-number="2.16">
+<h2 data-number="2.16" class="anchored" data-anchor-id="interpretasi"><span class="header-section-number">2.16</span> Interpretasi</h2>
+<ol type="1">
+<li><p>Mesin kopi. Mesin harusnya mengisi 250 gram, tapi rata-rata sampel cuma 247,6 gram. Kalau mesinnya memang benar, selisih segini jarang banget terjadi, cuma sekitar 1,6%. Jadi kemungkinan besar mesinnya memang sudah tidak pas.</p></li>
+<li><p>P-value. Nilainya sekitar 0,016, kecil banget. Artinya hasil seperti ini hampir tidak mungkin muncul kalau mesinnya benar.</p></li>
+<li><p>Keputusan. Karena p-value di bawah 0,05, kita tolak H₀. Jadi rata-rata isi mesin memang beda dari 250 gram (cenderung kurang) dan perlu dikalibrasi.</p></li>
+<li><p>Waktu pengiriman. P-value-nya 0,069, sedikit di atas 0,05, jadi kita gagal tolak H₀. Buktinya belum cukup untuk bilang pengiriman lebih dari 48 jam. Bukan berarti perusahaannya pasti jujur, cuma datanya belum cukup kuat.</p></li>
+<li><p>Hubungan dengan selang kepercayaan. Angka 250 ada di luar selang 95% (sekitar 245,6 sampai 249,6 gram). Jadi hasilnya nyambung dengan keputusan tolak H₀.</p></li>
+<li><p>Simulasi kesalahan Tipe I. Kalau mesinnya sebenarnya benar, ternyata masih ada sekitar 5% sampel yang salah ditolak. Angkanya sama dengan batas signifikansi yang kita pakai, jadi memang wajar.</p></li>
+<li><p>Simulasi power. Kalau mesinnya sebenarnya mengisi 248 gram dan sampelnya 36 kemasan, ujinya cuma bisa mendeteksi kurang lebih separuh dari waktu. Sisanya lolos begitu saja. Supaya lebih sering terdeteksi, sampelnya harus ditambah, sekitar 71 kemasan untuk power 80%.</p></li>
+<li><p>Hal yang memengaruhi power. Power makin besar kalau selisih sebenarnya besar, sampelnya banyak, atau batas signifikansinya dilonggarkan. Power mengecil kalau datanya terlalu bervariasi. Kalau kita memperkecil risiko salah tolak, risiko gagal mendeteksi malah naik. Satu-satunya cara menurunkan keduanya sekaligus ya dengan menambah sampel.</p></li>
+<li><p>Signifikan secara statistik vs praktis. Selisih 0,2 gram tidak signifikan kalau sampelnya 36, tapi jadi sangat signifikan kalau sampelnya 100.000. Padahal selisihnya sama-sama kecil. Jadi jangan cuma lihat p-value, seberapa besar selisihnya juga perlu dilihat.</p></li>
+<li><p>P-hacking. Makin banyak hal yang diuji, makin besar peluang ketemu hasil “signifikan” yang sebenarnya cuma kebetulan. Kalau ada 20 uji, peluangnya sudah sekitar 64%. Solusinya, batas signifikansi tiap uji dibuat lebih ketat (koreksi Bonferroni).</p></li>
+</ol>
 
 
 </section>
@@ -2238,8 +2252,8 @@ document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach((li
   </script>
 <nav class="page-navigation" aria-label="Halaman">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/bab-1.html" class="pagination-link" aria-label="Distribusi Sampling">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distribusi Sampling</span></span>
+      <a href="../chapters/bab-1.html" class="pagination-link" aria-label="Populasi Simulasi">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Populasi Simulasi</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -2253,5 +2267,5 @@ document.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach((li
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pakardata1/ebook-template-quarto.git/edit/main/chapters/bab-2.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/pakardata1/ebook-template-quarto.git/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan isu</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/orizasyatifa/template_repository.git/edit/main/chapters/bab-2.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/orizasyatifa/template_repository.git/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan isu</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
