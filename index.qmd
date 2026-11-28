@@ -6,21 +6,26 @@ description: "Deskripsi Singkat"
 
 # Kata Pengantar {.unnumbered}
 
-Dengan mengucap syukur kepada Tuhan Yang Maha Esa, saya sangat senang dapat mempersembahkan eBook **"Quarto Template"** kepada para pembaca dan pengguna. eBook ini disusun sebagai panduan praktis untuk membantu mahasiswa, dosen, peneliti, serta praktisi dalam memanfaatkan Quarto sebagai salah satu perangkat untuk menyusun, mengelola, dan menerbitkan dokumen secara profesional.
+# Kata Pengantar {.unnumbered}
 
-Quarto merupakan perangkat *open-source scientific and technical publishing* yang memungkinkan pengguna mengintegrasikan teks, kode pemrograman, hasil analisis, visualisasi data, serta berbagai elemen pendukung lainnya ke dalam satu dokumen. Dengan Quarto, proses penulisan dan publikasi dapat dilakukan secara lebih terstruktur, reproducible, dan efisien dalam berbagai format keluaran, seperti HTML, PDF, Microsoft Word, serta format publikasi lainnya.
+Puji syukur saya panjatkan kepada Tuhan Yang Maha Esa karena atas berkat dan rahmat-Nya, saya bisa menyelesaikan eBook berjudul **"[Pratikum Statistika]"** ini sebagai tugas mata kuliah Statistika.
 
-Contoh sitasi: tuliskan `[@xie2015]` untuk merujuk entri `xie2015` di `references/book.bib`. Pada hasil render, sitasinya tampil seperti ini [@xie2015].
+eBook ini saya buat menggunakan Quarto, yaitu *open-source scientific and technical publishing system* yang memudahkan kita menulis laporan sekaligus menjalankan kode R di dalamnya. Jadi hasil analisis, tabel, dan grafik bisa langsung muncul di dokumen tanpa perlu copy-paste dari aplikasi lain.
 
-Melalui eBook ini, pembaca akan diperkenalkan pada penggunaan template Quarto, mulai dari pengenalan struktur proyek, pengaturan konfigurasi, penulisan dokumen menggunakan Markdown, integrasi kode pemrograman, pengelolaan referensi, hingga proses *rendering* menjadi dokumen yang siap digunakan dan dipublikasikan.
+Contoh sitasi: tuliskan `[@xie2015]` untuk merujuk entri `xie2015` pada file `references.bib`.
 
-Materi disusun secara bertahap agar mudah dipahami dan dipraktikkan, termasuk oleh pengguna yang baru pertama kali mengenal Quarto. Template dan contoh yang disajikan diharapkan dapat menjadi referensi dalam mengembangkan berbagai kebutuhan dokumentasi akademik, laporan penelitian, modul pembelajaran, buku elektronik, maupun publikasi berbasis data.
+Lewat eBook ini, pembaca akan dikenalkan pada dasar-dasar statistika, mulai dari statistika deskriptif, penyajian data, sampai pengujian hipotesis, lengkap dengan cara mengerjakannya di R.
 
-Saya berharap eBook ini dapat memberikan manfaat nyata dalam mendukung peningkatan literasi digital, produktivitas akademik, dan penerapan praktik penulisan ilmiah yang modern. Lebih dari sekadar panduan teknis, eBook ini diharapkan dapat mendorong pembaca untuk mengeksplorasi berbagai kemampuan Quarto dan mengembangkan template sesuai dengan kebutuhan masing-masing.
+Materinya saya susun bertahap supaya gampang dipahami dan bisa langsung dipraktikkan, dengan contoh kasus dan kode yang bisa dicoba sendiri.
 
-Saya menyadari bahwa eBook ini masih memiliki ruang untuk penyempurnaan. Oleh karena itu, kritik, saran, dan masukan dari para pembaca sangat diharapkan sebagai bahan evaluasi untuk pengembangan edisi berikutnya.
+Saya berharap eBook ini bisa membantu teman-teman mahasiswa yang sedang belajar statistika, terutama yang baru mulai menggunakan R.
 
-Akhir kata, semoga eBook ini dapat menjadi referensi yang bermanfaat dan memberikan kontribusi positif bagi dunia pendidikan, penelitian, dan pengembangan ilmu pengetahuan.
+Saya sadar eBook ini masih jauh dari sempurna, baik dari isi maupun penyajiannya. Karena itu, kritik dan saran dari pembaca sangat saya harapkan supaya ke depannya bisa lebih baik.
+
+Terima kasih kepada Bapak [Bakti Siregar,M.Sc.,CDS.] selaku dosen pengampu yang sudah membimbing saya.
+
+Akhir kata, semoga eBook ini bermanfaat bagi siapa pun yang membacanya.
+
 
 **Oriza Syatifa**  
 Penulis
