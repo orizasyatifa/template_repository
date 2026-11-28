@@ -93,7 +93,7 @@ Bagian `sidebar.tools` pada `_quarto.yml` menambahkan tombol **Pratinjau PDF** d
 
 Pada situs HTML, arahkan kursor ke tautan web untuk melihat alamatnya. Tautan silang Quarto untuk gambar, tabel, dan rumus menampilkan pratinjau target; gunakan caption dan label seperti `fig-...`, `tbl-...`, atau `eq-...`, lalu rujuk dengan `@fig-...`, `@tbl-...`, atau `@eq-...`. Klik tautan silang untuk menuju target.
 
-Cover PDF diatur melalui `assets/preamble.tex` dan memakai `images/Cover.png`; sesuaikan path tersebut jika mengganti gambar cover. Foto penulis menggunakan gambar Quarto agar tampil di HTML dan PDF.
+Cover PDF diatur melalui `assets/preamble.tex` dan memakai `images/cover.png`; sesuaikan path tersebut jika mengganti gambar cover. Foto penulis menggunakan gambar Quarto agar tampil di HTML dan PDF.
 
 Tanggal di halaman depan diambil dari `date: today` pada `_quarto.yml`, sehingga diperbarui setiap kali situs dirender.
 
