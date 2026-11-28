@@ -12,7 +12,7 @@ book:
   author: "Oriza Syatifa"
   date: today
   description: "Deskripsi singkat tentang buku"
-  cover-image: images/cover.png
+  cover-image: images/Cover.png
   repo-url: https://github.com/orizasyatifa/template_repository.git
   repo-actions: [edit, issue]
   sidebar:
